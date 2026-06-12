@@ -1,1 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
 
+# Datos generados por AIDE FRANCE
+aide_france_data.json
+aide_france_backup.json
+url_cache_france.json
+etat_sources_france.json
+
+# Exportaciones
+aide_france_export.json
+aide_france_export.csv
+aide_france_report.html
+
+# Archivos temporales
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Variables de entorno
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*
