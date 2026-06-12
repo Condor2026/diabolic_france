@@ -2242,22 +2242,22 @@ def afficher_banniere_initiale():
 {Color.RED}
 ╔═══════════════════════════════════════════════════════════════════════════════╗
 ║                                                                               ║
-║    █████╗ ██╗██████╗ ███████╗    ███████╗██████╗  █████╗ ███╗   ██╗ ██████╗███████╗
-║   ██╔══██╗██║██╔══██╗██╔════╝    ██╔════╝██╔══██╗██╔══██╗████╗  ██║██╔════╝██╔════╝
-║   ███████║██║██║  ██║█████╗      █████╗  ██║  ██║███████║██╔██╗ ██║██║     █████╗  
-║   ██╔══██║██║██║  ██║██╔══╝      ██╔══╝  ██║  ██║██╔══██║██║╚██╗██║██║     ██╔══╝  
-║   ██║  ██║██║██████╔╗███████╗    ██║     ██████╔╝██║  ██║██║ ╚████║╚██████╗███████╗
-║   ╚═╝  ╚═╝╚═╝╚═════╝╚══════╝    ╚═╝     ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝╚══════╝
+║    █████╗ ██╗██████╗ ███████╗    ███████╗██████╗   █████╗  ███╗   ██╗ ███████╗███████╗
+║   ██╔══██╗██║██╔══██╗██╔════╝    ██╔════╝██╔══██╗ ██╔══██╗ ████╗  ██║ ██╔════╝██╔════╝
+║   ███████║██║██║  ██║█████╗      █████╗  ██║████╗ ███████║ █████║ ██║ ██╗     ██║██║       
+║   ██╔══██║██║██║  ██║██╔══╝      ██╔══╝  ██║  ██║ ██╔══██║ ██║╚██╗██║ ██║     ██╔══╝  
+║   ██║  ██║██║██████╔╗███████╗    ██║     ██║  ██║ ██║  ██║ ██║ ╚████║ ██████╗ ███████╗
+║   ╚═╝  ╚═╝╚═╝╚═════╝╚═══════╝    ╚═╝     ╚═╝  ╚═╝ ╚═╝  ╚═╝ ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝
 ║                                                                               ║
-║   🔪 AIDE-FRANCE v{VERSION} - PLATEFORME DE RENSEIGNEMENT CRIMINEL FRANÇAISE   ║
+║   🔪 AIDE-FRANCE v{VERSION} - PLATEFORME DE RENSEIGNEMENT CRIMINEL FRANÇAISE  ║
 ║                                                                               ║
 ║   ═══════════════════════════════════════════════════════════════════════     ║
 ║                                                                               ║
 ║   📊 Surveillance en temps réel: Trafic de drogue · Violence des gangs        ║
 ║   🏴 Couvre tous les 101 départements français                                ║
-║   🔄 150+ User-Agents rotatifs · Découverte auto-URL · Anti-blocage            ║
-║   📈 Graphiques interactifs · Dashboard web · Interface complète               ║
-║   🔍 Mécanisme de réessai intelligent · Cache URL · Persistance session        ║
+║   🔄 150+ User-Agents rotatifs · Découverte auto-URL · Anti-blocage           ║
+║   📈 Graphiques interactifs · Dashboard web · Interface complète              ║
+║   🔍 Mécanisme de réessai intelligent · Cache URL · Persistance session       ║
 ║                                                                               ║
 ║   ═══════════════════════════════════════════════════════════════════════     ║
 ║                                                                               ║
