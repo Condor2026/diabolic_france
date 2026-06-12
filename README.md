@@ -228,7 +228,7 @@ python --version
 
 ```bash
 # PASO 1: Cloner le dépôt
-git clone https://github.com/tu-usuario/aide-france
+git clone https://github.com/Condor2026/aide-france
 cd aide-france
 
 # PASO 2: Créer environnement virtuel
@@ -243,14 +243,14 @@ pip install -r requirements.txt
 python3 -c "import requests, bs4, flask; print('✅ Tout est correct')"
 
 # PASO 5: Lancer
-python3 aide_france.py
+python3 aide-france.py
 ```
 
 ### 🪟 Windows
 
 ```powershell
 # PASO 1: Cloner le dépôt
-git clone https://github.com/tu-usuario/aide-france
+git clone https://github.com/Condor2026/aide-france
 cd aide-france
 
 # PASO 2: Créer environnement virtuel
@@ -265,7 +265,7 @@ pip install -r requirements.txt
 python -c "import requests, bs4, flask; print('✅ Tout est correct')"
 
 # PASO 5: Lancer
-python aide_france.py
+python aide-france.py
 ```
 
 ### 🐳 Docker
@@ -292,9 +292,9 @@ Lors de la **PREMIÈRE EXÉCUTION**, suivez ces étapes obligatoires :
 ```
 🌍 SELECCIONE IDIOMA / CHOISISSEZ LA LANGUE / SCEGLI LINGUA
 ┌──────────────────────────────────────────────────────────┐
-│  [1] Español                                              │
-│  [2] Français                                             │
-│  [3] Italiano                                             │
+│  [1] Español                                             │
+│  [2] Français                                            │
+│  [3] Italiano                                            │
 └──────────────────────────────────────────────────────────┘
 ➤ Option / Opción / Opzione : 2
 ```
