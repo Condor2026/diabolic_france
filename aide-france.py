@@ -1278,37 +1278,63 @@ def exportar_html():
     return Response(gestor_global.exportar_html(), mimetype='text/html', headers={'Content-Disposition': 'attachment; filename=aide_france.html'})
 
 # ============================================================================
-# MENÚ PRINCIPAL DE TERMINAL (adaptado 3 idiomas)
+# MENÚ PRINCIPAL DE TERMINAL
 # ============================================================================
+
+def mostrar_banner_inicial():
+    print(f"""
+{Color.RED}
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║                                                                               ║
+║   █████╗ ██╗██████╗ ███████╗    ███████╗██████╗  █████╗ ███╗   ██╗ ██████╗███████╗
+║  ██╔══██╗██║██╔══██╗██╔════╝    ██╔════╝██╔══██╗██╔══██╗████╗  ██║██╔════╝██╔════╝
+║  ███████║██║██║  ██║█████╗      █████╗  ██████╔╝███████║██╔██╗ ██║██║     █████╗  
+║  ██╔══██║██║██║  ██║██╔══╝      ██╔══╝  ██╔══██╗██╔══██║██║╚██╗██║██║     ██╔══╝  
+║  ██║  ██║██║██████╔╝███████╗    ██║     ██║  ██║██║  ██║██║ ╚████║╚██████╗███████╗
+║  ╚═╝  ╚═╝╚═╝╚═════╝ ╚══════╝    ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝╚══════╝
+║                                                                               ║
+║   🇫🇷 AIDE FRANCE v{VERSION} - PLATEFORME D'ENTRAIDE SOCIALE                   ║
+║   ══════════════════════════════════════════════════════════════════════════  ║
+║   📊 Surveillance: Aide sociale · Logement · Chômage · Précarité · Droits     ║
+║   🔄 150+ User-Agents · Auto-discovery · Anti-blocage · Pagination réelle     ║
+║   📈 Graphiques interactifs · Dashboard web · 3 langues (ES/FR/IT)            ║
+║                                                                               ║
+║   🛡️  "L'union fait la force" - Devise française                              ║
+║                                                                               ║
+║                                         - By Condor2026                       ║
+║                                         •SpectrumSecurity•                    ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+{Color.RESET}""")
 
 def mostrar_menu_principal():
     stats = gestor_global.estadisticas()
     activas = len([f for f in fuentes_global if f.get('activo', True)])
+    
     print(f"""
-{Color.RED}╔{'═' * 56}╗{Color.RESET}
-{Color.RED}║{Color.BOLD}{Color.WHITE}  🇫🇷 {t('app_name')}{' ' * 28}{Color.RED}║{Color.RESET}
-{Color.RED}╠{'═' * 56}╣{Color.RESET}
-{Color.RED}║{Color.CYAN}  📊 {t('stats_total')}: {stats['total']}{' ' * 28}{Color.RED}║{Color.RESET}
-{Color.RED}║{Color.YELLOW}  📰 {t('fuentes')}: {activas}/{len(fuentes_global)}{' ' * 26}{Color.RED}║{Color.RESET}
-{Color.RED}║{Color.GREEN}  🏴 {t('departamentos')}: {len(stats['departements'])}{' ' * 26}{Color.RED}║{Color.RESET}
-{Color.RED}╚{'═' * 56}╝{Color.RESET}
+{Color.RED}{'=' * 50}{Color.RESET}
+{Color.BOLD}{Color.WHITE}  🇫🇷 {t('app_name')}{Color.RESET}
+{Color.RED}{'=' * 50}{Color.RESET}
+  📊 {t('stats_total')}: {stats['total']}
+  📰 {t('fuentes')}: {activas} / {len(fuentes_global)}
+  🏴 {t('departamentos')}: {len(stats['departements'])}
+{Color.RED}{'=' * 50}{Color.RESET}
 
-{Color.YELLOW}┌{'─' * 46}┐{Color.RESET}
-{Color.YELLOW}│{Color.CYAN}  📋 {t('menu_title')}{' ' * 29}{Color.YELLOW}│{Color.RESET}
-{Color.YELLOW}├{'─' * 46}┤{Color.RESET}
-{Color.YELLOW}│{Color.GREEN}  1. 🔍 {t('cmd_buscar')}{' ' * 22}{Color.YELLOW}│{Color.RESET}
-{Color.YELLOW}│{Color.GREEN}  2. 📊 {t('cmd_analisis')}{' ' * 14}{Color.YELLOW}│{Color.RESET}
-{Color.YELLOW}│{Color.GREEN}  3. 🔗 {t('cmd_conexiones')}{' ' * 14}{Color.YELLOW}│{Color.RESET}
-{Color.YELLOW}│{Color.GREEN}  4. 📈 {t('cmd_evolucion')}{' ' * 17}{Color.YELLOW}│{Color.RESET}
-{Color.YELLOW}│{Color.GREEN}  5. 🌐 {t('cmd_web')}{' ' * 24}{Color.YELLOW}│{Color.RESET}
-{Color.YELLOW}│{Color.GREEN}  6. 📰 {t('cmd_ultimos')}{' ' * 15}{Color.YELLOW}│{Color.RESET}
-{Color.YELLOW}│{Color.GREEN}  7. 📥 {t('cmd_exportar')}{' ' * 14}{Color.YELLOW}│{Color.RESET}
-{Color.YELLOW}│{Color.GREEN}  8. 🔍 {t('cmd_verificar')}{' ' * 16}{Color.YELLOW}│{Color.RESET}
-{Color.YELLOW}│{Color.GREEN}  9. 📊 {t('cmd_tipos')}{' ' * 14}{Color.YELLOW}│{Color.RESET}
-{Color.YELLOW}│{Color.GREEN} 10. 📈 {t('cmd_estadisticas')}{' ' * 22}{Color.YELLOW}│{Color.RESET}
-{Color.YELLOW}│{Color.GREEN} 11. 🧹 {t('cmd_limpiar')}{' ' * 12}{Color.YELLOW}│{Color.RESET}
-{Color.YELLOW}│{Color.RED} 12. 🗑️ {t('cmd_salir')}{' ' * 22}{Color.YELLOW}│{Color.RESET}
-{Color.YELLOW}└{'─' * 46}┘{Color.RESET}
+{Color.YELLOW}{'=' * 45}{Color.RESET}
+{Color.CYAN}  📋 {t('menu_title')}{Color.RESET}
+{Color.YELLOW}{'=' * 45}{Color.RESET}
+{Color.GREEN}  1. 🔍 {t('cmd_buscar')}
+{Color.GREEN}  2. 📊 {t('cmd_analisis')}
+{Color.GREEN}  3. 🔗 {t('cmd_conexiones')}
+{Color.GREEN}  4. 📈 {t('cmd_evolucion')}
+{Color.GREEN}  5. 🌐 {t('cmd_web')}
+{Color.GREEN}  6. 📰 {t('cmd_ultimos')}
+{Color.GREEN}  7. 📥 {t('cmd_exportar')}
+{Color.GREEN}  8. 🔍 {t('cmd_verificar')}
+{Color.GREEN}  9. 📊 {t('cmd_tipos')}
+{Color.GREEN} 10. 📈 {t('cmd_estadisticas')}
+{Color.GREEN} 11. 🧹 {t('cmd_limpiar')}
+{Color.RED} 12. 🗑️ {t('cmd_salir')}{Color.RESET}
+{Color.YELLOW}{'=' * 45}{Color.RESET}
 """)
 
 def menu():
@@ -1340,84 +1366,9 @@ def menu():
             cprint(f"\n🌐 {t('servidor_web')}: http://localhost:{PUERTO}", 'green', bold=True)
             cprint(f"   📊 Dashboard avec pagination réelle", 'cyan')
             cprint(f"   🌍 3 langues: ES/FR/IT", 'cyan')
-            cprint(f"   🔪 {t('presiona_ctrl_c')}", 'gray')
+            cprint(f"   {Color.GRAY}Ctrl+C para volver al menú{Color.RESET}")
             app.run(host='127.0.0.1', port=PUERTO, debug=False)
         elif opc == '6':
-            cprint(f"\n📰 {t('cmd_ultimos')}", 'red', bold=True, bg=True)
-            for i, av in enumerate(gestor_global.datos['avisos'][-20:][::-1], 1):
-                cprint(f"\n{i:2d}. {av['titulo'][:100]}...", 'white')
-                cprint(f"      📅 {av['fecha']} | 📍 {av.get('departement','?')} | 📰 {av['fuente']} | 🔪 {av.get('tipo','?')}", 'gray')
-            if gestor_global.estadisticas()['total'] == 0:
-                cprint(f"   {Color.GRAY}Aucune donnée. Lancez une recherche d'abord.{Color.RESET}")
-            input(f"\n{Color.GRAY}Enter...{Color.RESET}")
-        elif opc == '12':
-            cprint(f"\n👋 {t('hasta_pronto')}", 'red', bold=True)
-            break
-        else:
-            cprint(f"\n❌ {t('opcion_invalida')}", 'red')
-            time.sleep(1)
-
-def mostrar_banner_inicial():
-    print(f"""
-{Color.RED}
-╔═══════════════════════════════════════════════════════════════════════════════╗
-║                                                                               ║
-║   █████╗ ██╗██████╗ ███████╗    ███████╗██████╗  █████╗ ███╗   ██╗ ██████╗███████╗
-║  ██╔══██╗██║██╔══██╗██╔════╝    ██╔════╝██╔══██╗██╔══██╗████╗  ██║██╔════╝██╔════╝
-║  ███████║██║██║  ██║█████╗      █████╗  ██████╔╝███████║██╔██╗ ██║██║     █████╗  
-║  ██╔══██║██║██║  ██║██╔══╝      ██╔══╝  ██╔══██╗██╔══██║██║╚██╗██║██║     ██╔══╝  
-║  ██║  ██║██║██████╔╝███████╗    ██║     ██║  ██║██║  ██║██║ ╚████║╚██████╗███████╗
-║  ╚═╝  ╚═╝╚═╝╚═════╝ ╚══════╝    ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝╚══════╝
-║                                                                               ║
-║   🇫🇷 AIDE FRANCE v{VERSION} - PLATEFORME D'ENTRAIDE SOCIALE                   ║
-║   ══════════════════════════════════════════════════════════════════════════  ║
-║   📊 Surveillance: Aide sociale · Logement · Chômage · Précarité · Droits     ║
-║   🔄 150+ User-Agents · Auto-discovery · Anti-blocage · Pagination réelle     ║
-║   📈 Graphiques interactifs · Dashboard web · 3 langues (ES/FR/IT)            ║
-║                                                                               ║
-║   🛡️  "L'union fait la force" - Devise française                              ║
-║                                                                               ║
-║                                         - By Condor2026                       ║
-║                                         •SpectrumSecurity•                    ║
-╚═══════════════════════════════════════════════════════════════════════════════╝
-{Color.RESET}""")
-
-def menu():
-    global gestor_global, fuentes_global
-    
-    while True:
-        mostrar_menu_principal()
-        opcion = input(f"{Color.CYAN}➤ {Color.YELLOW}Opción: {Color.RESET}")
-        
-        if opcion == '1':
-            cprint(f"\n🔍 {t('procesando')}", 'cyan', bold=True)
-            verificador = VerificadorFuentes()
-            fuentes_global = verificador.verificar_todas(fuentes_global)
-            extractor = ExtractorNoticias(fuentes_global)
-            nuevos = extractor.extraer_todas(paginas=PAGINAS_BUSQUEDA)
-            agregados = gestor_global.agregar_avisos(nuevos)
-            cprint(f"\n✅ {agregados} {t('incidentes')} nouveaux enregistrés", 'green', bold=True)
-            input(f"\n{Color.GRAY}Presiona Enter para continuar...{Color.RESET}")
-        
-        elif opcion == '2':
-            stats = gestor_global.estadisticas()
-            cprint(f"\n{'='*70}", 'red', bold=True)
-            cprint(f"📊 {t('analisis_completo')}", 'red', bold=True, bg=True)
-            cprint(f"{'='*70}", 'red', bold=True)
-            cprint(f"\n📈 {t('stats_total')}: {stats['total']}", 'white')
-            cprint(f"   7d: {stats['ultimos_7dias']} | 30d: {stats['ultimos_30dias']} | 90d: {stats['ultimos_90dias']}", 'white')
-            cprint(f"\n📍 TOP départements:", 'yellow')
-            for dep, cnt in sorted(stats['departements'].items(), key=lambda x: x[1], reverse=True)[:8]:
-                cprint(f"   {dep}: {cnt}", 'cyan')
-            input(f"\n{Color.GRAY}Presiona Enter para continuar...{Color.RESET}")
-        
-        elif opcion == '5':
-            cprint(f"\n🌐 {t('servidor_web')}: http://localhost:{PUERTO}", 'green', bold=True)
-            cprint(f"   📊 Pagination réelle + 3 langues", 'cyan')
-            cprint(f"   {Color.GRAY}Ctrl+C pour revenir au menu{Color.RESET}")
-            app.run(host='127.0.0.1', port=PUERTO, debug=False)
-        
-        elif opcion == '6':
             cprint(f"\n{'='*70}", 'red', bold=True)
             cprint(f"📰 {t('cmd_ultimos')}", 'red', bold=True, bg=True)
             cprint(f"{'='*70}", 'red', bold=True)
@@ -1426,52 +1377,18 @@ def menu():
                 cprint(f"      📅 {av['fecha']} | 📍 {av.get('departement','?')} | 📰 {av['fuente']} | 🔪 {av.get('tipo','?')}", 'gray')
             if gestor_global.estadisticas()['total'] == 0:
                 cprint(f"   {Color.GRAY}Aucune donnée. Lancez une recherche d'abord.{Color.RESET}")
-            input(f"\n{Color.GRAY}Presiona Enter para continuar...{Color.RESET}")
-        
-        elif opcion == '8':
+            input(f"\n{Color.GRAY}Enter...{Color.RESET}")
+        elif opc == '8':
             cprint(f"\n🔍 {t('verificando')}", 'cyan', bold=True)
             verificador = VerificadorFuentes()
             fuentes_global = verificador.verificar_todas(fuentes_global)
-            input(f"\n{Color.GRAY}Presiona Enter para continuar...{Color.RESET}")
-        
-        elif opcion == '12':
+            input(f"\n{Color.GRAY}Enter...{Color.RESET}")
+        elif opc == '12':
             cprint(f"\n👋 {t('hasta_pronto')}", 'red', bold=True)
             break
-        
         else:
             cprint(f"\n❌ {t('opcion_invalida')}", 'red')
             time.sleep(1)
-
-
-def mostrar_menu_principal():
-    stats = gestor_global.estadisticas()
-    activas = len([f for f in fuentes_global if f.get('activo', True)])
-    print(f"""
-{Color.RED}╔{'═' * 70}╗{Color.RESET}
-{Color.RED}║{Color.BOLD}{Color.WHITE}  🇫🇷 {t('app_name')}{' ' * 46}{Color.RED}║{Color.RESET}
-{Color.RED}╠{'═' * 70}╣{Color.RESET}
-{Color.RED}║{Color.CYAN}  📊 {t('stats_total')}: {stats['total']} {t('incidentes')}{' ' * 37}{Color.RED}║{Color.RESET}
-{Color.RED}║{Color.YELLOW}  📰 {t('fuentes')}: {activas} de {len(fuentes_global)}{' ' * 39}{Color.RED}║{Color.RESET}
-{Color.RED}║{Color.GREEN}  🏴 {t('departamentos')}: {len(stats['departements'])}{' ' * 40}{Color.RED}║{Color.RESET}
-{Color.RED}╚{'═' * 70}╝{Color.RESET}
-
-{Color.YELLOW}┌{'─' * 52}┐{Color.RESET}
-{Color.YELLOW}│{Color.CYAN}  📋 {t('menu_title')}{' ' * 38}{Color.YELLOW}│{Color.RESET}
-{Color.YELLOW}├{'─' * 52}┤{Color.RESET}
-{Color.YELLOW}│{Color.GREEN}  [1]  🔍 {t('cmd_buscar')}{' ' * 31}{Color.YELLOW}│{Color.RESET}
-{Color.YELLOW}│{Color.GREEN}  [2]  📊 {t('cmd_analisis')}{' ' * 30}{Color.YELLOW}│{Color.RESET}
-{Color.YELLOW}│{Color.GREEN}  [3]  🔗 {t('cmd_conexiones')}{' ' * 29}{Color.YELLOW}│{Color.RESET}
-{Color.YELLOW}│{Color.GREEN}  [4]  📈 {t('cmd_evolucion')}{' ' * 30}{Color.YELLOW}│{Color.RESET}
-{Color.YELLOW}│{Color.GREEN}  [5]  🌐 {t('cmd_web')}{' ' * 34}{Color.YELLOW}│{Color.RESET}
-{Color.YELLOW}│{Color.GREEN}  [6]  📰 {t('cmd_ultimos')}{' ' * 32}{Color.YELLOW}│{Color.RESET}
-{Color.YELLOW}│{Color.GREEN}  [7]  📥 {t('cmd_exportar')}{' ' * 32}{Color.YELLOW}│{Color.RESET}
-{Color.YELLOW}│{Color.GREEN}  [8]  🔍 {t('cmd_verificar')}{' ' * 31}{Color.YELLOW}│{Color.RESET}
-{Color.YELLOW}│{Color.GREEN}  [9]  📊 {t('cmd_tipos')}{' ' * 33}{Color.YELLOW}│{Color.RESET}
-{Color.YELLOW}│{Color.GREEN}  [10] 📈 {t('cmd_estadisticas')}{' ' * 28}{Color.YELLOW}│{Color.RESET}
-{Color.YELLOW}│{Color.GREEN}  [11] 🧹 {t('cmd_limpiar')}{' ' * 33}{Color.YELLOW}│{Color.RESET}
-{Color.YELLOW}│{Color.RED}  [12] 🗑️ {t('cmd_salir')}{' ' * 35}{Color.YELLOW}│{Color.RESET}
-{Color.YELLOW}└{'─' * 52}┘{Color.RESET}
-""")
 
 
 if __name__ == '__main__':
