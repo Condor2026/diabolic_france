@@ -1380,18 +1380,68 @@ def mostrar_banner_inicial():
 ╚═══════════════════════════════════════════════════════════════════════════════╝
 {Color.RESET}""")
 
-if __name__ == '__main__':
-    seleccionar_idioma()
-    mostrar_banner_inicial()
-    gestor_global = GestorDatos()
-    fuentes_global = FUENTES_BASE.copy()
-    stats = gestor_global.estadisticas()
-    cprint(f"\n{Color.GREEN}📊 Base de données: {stats['total']} avis stockés{Color.RESET}")
-    cprint(f"{Color.YELLOW}⏳ Dernière mise à jour: {gestor_global.datos.get('ultima_actualizacion', 'Jamais')}{Color.RESET}")
-    cprint(f"{Color.CYAN}📰 Sources configurées: {len(fuentes_global)} médias français{Color.RESET}")
+def menu():
+    global gestor_global, fuentes_global
     
+    while True:
+        mostrar_menu_principal()
+        opcion = input(f"{Color.CYAN}➤ {Color.YELLOW}Opción: {Color.RESET}")
+        
+        if opcion == '1':
+            cprint(f"\n🔍 {t('procesando')}", 'cyan', bold=True)
+            verificador = VerificadorFuentes()
+            fuentes_global = verificador.verificar_todas(fuentes_global)
+            extractor = ExtractorNoticias(fuentes_global)
+            nuevos = extractor.extraer_todas(paginas=PAGINAS_BUSQUEDA)
+            agregados = gestor_global.agregar_avisos(nuevos)
+            cprint(f"\n✅ {agregados} {t('incidentes')} nouveaux enregistrés", 'green', bold=True)
+            input(f"\n{Color.GRAY}Presiona Enter para continuar...{Color.RESET}")
+        
+        elif opcion == '2':
+            stats = gestor_global.estadisticas()
+            cprint(f"\n{'='*70}", 'red', bold=True)
+            cprint(f"📊 {t('analisis_completo')}", 'red', bold=True, bg=True)
+            cprint(f"{'='*70}", 'red', bold=True)
+            cprint(f"\n📈 {t('stats_total')}: {stats['total']}", 'white')
+            cprint(f"   7d: {stats['ultimos_7dias']} | 30d: {stats['ultimos_30dias']} | 90d: {stats['ultimos_90dias']}", 'white')
+            cprint(f"\n📍 TOP départements:", 'yellow')
+            for dep, cnt in sorted(stats['departements'].items(), key=lambda x: x[1], reverse=True)[:8]:
+                cprint(f"   {dep}: {cnt}", 'cyan')
+            input(f"\n{Color.GRAY}Presiona Enter para continuar...{Color.RESET}")
+        
+        elif opcion == '5':
+            cprint(f"\n🌐 {t('servidor_web')}: http://localhost:{PUERTO}", 'green', bold=True)
+            cprint(f"   📊 Pagination réelle + 3 langues", 'cyan')
+            cprint(f"   {Color.GRAY}Ctrl+C pour revenir au menu{Color.RESET}")
+            app.run(host='127.0.0.1', port=PUERTO, debug=False)
+        
+        elif opcion == '6':
+            cprint(f"\n{'='*70}", 'red', bold=True)
+            cprint(f"📰 {t('cmd_ultimos')}", 'red', bold=True, bg=True)
+            cprint(f"{'='*70}", 'red', bold=True)
+            for i, av in enumerate(gestor_global.datos['avisos'][-20:][::-1], 1):
+                cprint(f"\n{i:2d}. {av['titulo'][:100]}...", 'white')
+                cprint(f"      📅 {av['fecha']} | 📍 {av.get('departement','?')} | 📰 {av['fuente']} | 🔪 {av.get('tipo','?')}", 'gray')
+            if gestor_global.estadisticas()['total'] == 0:
+                cprint(f"   {Color.GRAY}Aucune donnée. Lancez une recherche d'abord.{Color.RESET}")
+            input(f"\n{Color.GRAY}Presiona Enter para continuar...{Color.RESET}")
+        
+        elif opcion == '8':
+            cprint(f"\n🔍 {t('verificando')}", 'cyan', bold=True)
+            verificador = VerificadorFuentes()
+            fuentes_global = verificador.verificar_todas(fuentes_global)
+            input(f"\n{Color.GRAY}Presiona Enter para continuar...{Color.RESET}")
+        
+        elif opcion == '12':
+            cprint(f"\n👋 {t('hasta_pronto')}", 'red', bold=True)
+            break
+        
+        else:
+            cprint(f"\n❌ {t('opcion_invalida')}", 'red')
+            time.sleep(1)
+
+
 def mostrar_menu_principal():
-    """Muestra el menú principal con diseño profesional"""
     stats = gestor_global.estadisticas()
     activas = len([f for f in fuentes_global if f.get('activo', True)])
     print(f"""
@@ -1420,12 +1470,31 @@ def mostrar_menu_principal():
 {Color.YELLOW}│{Color.RED}  [12] 🗑️ {t('cmd_salir')}{' ' * 35}{Color.YELLOW}│{Color.RESET}
 {Color.YELLOW}└{'─' * 52}┘{Color.RESET}
 """)
+
+
+if __name__ == '__main__':
+    seleccionar_idioma()
+    mostrar_banner_inicial()
+    gestor_global = GestorDatos()
+    fuentes_global = FUENTES_BASE.copy()
+    stats = gestor_global.estadisticas()
+    cprint(f"\n{Color.GREEN}📊 Base de données: {stats['total']} avis stockés{Color.RESET}")
+    cprint(f"{Color.YELLOW}⏳ Dernière mise à jour: {gestor_global.datos.get('ultima_actualizacion', 'Jamais')}{Color.RESET}")
+    cprint(f"{Color.CYAN}📰 Sources configurées: {len(fuentes_global)} médias français{Color.RESET}")
+    
+    print(f"\n{Color.CYAN}┌{'─' * 40}┐{Color.RESET}")
+    print(f"{Color.CYAN}│{Color.WHITE}  Mode d'exécution:{' ' * 25}{Color.CYAN}│{Color.RESET}")
+    print(f"{Color.CYAN}├{'─' * 40}┤{Color.RESET}")
+    print(f"{Color.CYAN}│{Color.GREEN}  [1] Terminal (recommandé){' ' * 17}{Color.CYAN}│{Color.RESET}")
+    print(f"{Color.CYAN}│{Color.GREEN}  [2] Web (dashboard graphique){' ' * 12}{Color.CYAN}│{Color.RESET}")
+    print(f"{Color.CYAN}└{'─' * 40}┘{Color.RESET}")
     
     modo = input(f"\n{Color.CYAN}➤ {Color.YELLOW}Choisissez: {Color.RESET}")
+    
     if modo == '2':
         cprint(f"\n🌐 {t('servidor_web')}: http://localhost:{PUERTO}", 'green', bold=True)
-        cprint(f"   📊 Pagination réelle + 3 langues", 'cyan')
-        cprint(f"   {Color.GRAY}Ctrl+C pour revenir au menu{Color.RESET}")
+        cprint(f"   📊 Dashboard avec pagination réelle", 'cyan')
+        cprint(f"   {Color.GRAY}Presiona Ctrl+C para volver al menú{Color.RESET}")
         app.run(host='127.0.0.1', port=PUERTO, debug=False)
     else:
         menu()
