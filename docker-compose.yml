@@ -1,59 +1,77 @@
 # ============================================
-# AIDE FRANCE - Docker Compose
-# Plateforme d'entraide sociale française
+# DIABOLIC FRANCE - Docker Compose
+# Plateforme de renseignement criminel française
 # ============================================
 
 version: '3.8'
 
 services:
-  aide-france:
+  diabolic-france:
     build: .
-    container_name: aide_france
+    container_name: diabolic_france
     restart: unless-stopped
     ports:
-      - "5015:5015"
+      - "5016:5016"
     volumes:
-      - aide_france-data:/app/data
-      - aide_france-exports:/app/exports
+      - diabolic_france-data:/app/data
+      - diabolic_france-exports:/app/exports
     environment:
       - PYTHONUNBUFFERED=1
-      - PORT=5015
+      - PORT=5016
       - LANG=fr_FR.UTF-8
       - LC_ALL=fr_FR.UTF-8
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5015"]
+      test: ["CMD", "curl", "-f", "http://localhost:5016"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
     networks:
-      - aide-network
+      - diabolic-network
 
   # Opcional: servicio de backup automático
-  aide-backup:
+  diabolic-backup:
     image: alpine:latest
-    container_name: aide_backup
+    container_name: diabolic_backup
     volumes:
-      - aide-france-data:/data:ro
+      - diabolic_france-data:/data:ro
       - ./backups:/backups
     command: |
       sh -c "
       while true; do
-        tar -czf /backups/aide-france-backup-$(date +%Y%m%d-%H%M%S).tar.gz /data/ 2>/dev/null || true
+        tar -czf /backups/diabolic_france-backup-$(date +%Y%m%d-%H%M%S).tar.gz /data/ 2>/dev/null || true
         find /backups -name '*.tar.gz' -mtime +7 -delete
         sleep 86400
       done
       "
     restart: unless-stopped
     networks:
-      - aide-network
+      - diabolic-network
 
 volumes:
-  aide-france-data:
+  diabolic_france-data:
     driver: local
-  aide-france-exports:
+  diabolic_france-exports:
     driver: local
 
 networks:
-  aide-network:
+  diabolic-network:
     driver: bridge
+```
+
+---
+
+## ✅ RESUMEN DE CAMBIOS
+
+| Elemento | Antes (AIDE FRANCE) | Ahora (DIABOLIC FRANCE) |
+|----------|---------------------|--------------------------|
+| **Nombre del servicio** | `aide-france` | `diabolic-france` |
+| **Container name** | `aide_france` | `diabolic_france` |
+| **Puerto** | `5015:5015` | `5016:5016` |
+| **Volumen de datos** | `aide-france-data` | `diabolic_france-data` |
+| **Volumen de exports** | `aide-france-exports` | `diabolic_france-exports` |
+| **Red** | `aide-network` | `diabolic-network` |
+| **Servicio backup** | `aide-backup` | `diabolic-backup` |
+| **Container backup** | `aide_backup` | `diabolic_backup` |
+| **Nombre backup** | `aide-france-backup-*.tar.gz` | `diabolic_france-backup-*.tar.gz` |
+| **Descripción** | "Plateforme d'entraide sociale française" | "Plateforme de renseignement criminel française" |
