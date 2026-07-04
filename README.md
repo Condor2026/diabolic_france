@@ -80,7 +80,7 @@
   <img src="https://img.shields.io/badge/status-crime_intelligence_active-success?style=for-the-badge">
 </p>
 
-<h1 align="center">🔪 DIABOLIC FRANCE v3.0</h1>
+<h1 align="center">🔪🇫🇷🗼 DIABOLIC FRANCE v3.0</h1>
 <h3 align="center">🇫🇷 PLATEFORME DE RENSEIGNEMENT CRIMINEL FRANÇAISE 🇫🇷</h3>
 <h3 align="center">🇪🇸 PLATAFORMA DE INTELIGENCIA CRIMINAL FRANCESA 🇪🇸</h3>
 <h3 align="center">🇮🇹 PIATTAFORMA DI INTELLIGENZA CRIMINALE FRANCESE 🇮🇹</h3>
