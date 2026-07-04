@@ -1405,76 +1405,489 @@ HTML_TEMPLATE = '''
 <html lang="{{ lang }}">
 <head>
     <meta charset="UTF-8">
-    <title>🔪 DIABOLIC FRANCE</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIABOLIC FRANCE - Surveillance Criminelle</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
-        *{margin:0;padding:0;box-sizing:border-box}
-        body{background:linear-gradient(135deg,#0a0a0a,#1a0a2a);color:#e0e0e0;font-family:sans-serif;padding:20px}
-        .container{max-width:1200px;margin:0 auto}
-        .header{background:linear-gradient(135deg,#1a0a2a,#2a0a2a);padding:30px;border-radius:20px;text-align:center;margin-bottom:30px;border:1px solid #cc0000}
-        h1{color:#cc0000}.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin:20px 0}
-        .stat-card{background:#111;padding:20px;border-radius:15px;text-align:center;border-left:4px solid #cc0000}
-        .stat-number{font-size:2.5em;color:#cc0000;font-weight:bold}
-        .btn{background:#222;color:#cc0000;border:2px solid #cc0000;padding:10px 20px;border-radius:40px;margin:5px;cursor:pointer;text-decoration:none;display:inline-block}
-        .btn:hover{background:#cc0000;color:#000}
-        .filtros{display:flex;gap:10px;justify-content:center;margin:20px 0;flex-wrap:wrap}
-        .filtro-btn{background:#1a1a1a;color:#ccc;border:2px solid #333;padding:8px 20px;border-radius:30px;text-decoration:none}
-        .filtro-btn.active,.filtro-btn:hover{background:#cc0000;color:#000}
-        .charts-row{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin:20px 0}
-        .chart-container{background:#111;border-radius:15px;padding:20px}
-        .pagination{display:flex;justify-content:center;gap:15px;margin:20px 0}
-        .page-link{background:#222;color:#cc0000;padding:8px 16px;border-radius:8px;text-decoration:none}
-        .crime-card{background:#0a0a0a;margin:10px 0;padding:15px;border-radius:10px;border-left:4px solid #cc0000}
-        .severity-bar{height:4px;background:#333;margin-top:10px;border-radius:2px;overflow:hidden}
-        .severity-fill{height:100%;background:#cc0000;width:0%}
-        @media(max-width:768px){.stats-grid{grid-template-columns:repeat(2,1fr)}.charts-row{grid-template-columns:1fr}}
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            background: #0a0a0f;
+            color: #e8e8e8;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #14141a; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #002395, #ed2939); border-radius: 10px; }
+        .container { max-width: 1440px; margin: 0 auto; }
+        @keyframes flagWave {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        .header {
+            background: linear-gradient(135deg, #002395 0%, #002395 28%, #ffffff 28%, #ffffff 52%, #ed2939 52%, #ed2939 72%, #002395 72%, #002395 100%);
+            background-size: 300% 100%;
+            animation: flagWave 10s ease-in-out infinite;
+            padding: 30px;
+            border-radius: 28px;
+            text-align: center;
+            margin-bottom: 30px;
+            border: 2px solid rgba(237, 41, 57, 0.3);
+            box-shadow: 0 0 60px rgba(237, 41, 57, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.08) 0%, transparent 70%);
+            animation: glowPulse 6s ease-in-out infinite;
+        }
+        .header-content {
+            position: relative;
+            z-index: 2;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            display: inline-block;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .header h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: 3.5em;
+            font-weight: 900;
+            letter-spacing: 6px;
+            background: linear-gradient(135deg, #ffffff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 30px rgba(237, 41, 57, 0.3));
+        }
+        .header .subtitle { color: #ffffff; font-size: 1em; letter-spacing: 3px; opacity: 0.8; margin-top: 5px; font-weight: 300; text-transform: uppercase; }
+        .header .badge-version {
+            display: inline-block;
+            background: rgba(237, 41, 57, 0.25);
+            border: 1px solid rgba(237, 41, 57, 0.4);
+            padding: 4px 18px;
+            border-radius: 30px;
+            font-size: 0.7em;
+            color: #ff6b6b;
+            margin-top: 8px;
+            font-weight: 600;
+        }
+        .header .lang-flags { margin-top: 12px; display: flex; gap: 12px; justify-content: center; }
+        .header .lang-flags a { font-size: 1.5em; text-decoration: none; transition: all 0.3s ease; filter: grayscale(0.5); }
+        .header .lang-flags a:hover { transform: scale(1.4) rotate(-5deg); filter: grayscale(0); }
+        .clock-container { text-align: center; margin: 10px 0 20px; font-family: 'Orbitron', monospace; font-size: 0.9em; color: #6a6a7a; letter-spacing: 2px; }
+        .clock-container span { color: #ed2939; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; margin-bottom: 25px; }
+        .stat-card {
+            background: linear-gradient(145deg, #12121a, #1a1a24);
+            padding: 18px 15px;
+            border-radius: 16px;
+            text-align: center;
+            border-left: 4px solid #ed2939;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .stat-card::after {
+            content: '';
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(237, 41, 57, 0.06), transparent);
+        }
+        .stat-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); border-left-color: #002395; }
+        .stat-card .stat-icon { font-size: 1.4em; display: block; margin-bottom: 2px; }
+        .stat-card .stat-number {
+            font-size: 2.2em;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ed2939, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+            font-family: 'Orbitron', monospace;
+        }
+        .stat-card .stat-label { color: #9a9aaa; font-size: 0.7em; margin-top: 2px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+        .stat-card .stat-trend { font-size: 0.75em; margin-top: 4px; font-weight: 600; }
+        .stat-card .stat-trend.up { color: #4ade80; }
+        .stat-card .stat-trend.down { color: #f87171; }
+        .stat-card .stat-trend.stable { color: #fbbf24; }
+        .btn-group { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 20px; }
+        .btn {
+            background: #1a1a24;
+            color: #e8e8e8;
+            border: 2px solid #2a2a3a;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 0.8em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .btn:hover { background: #ed2939; border-color: #ed2939; color: #fff; transform: scale(1.04); box-shadow: 0 0 25px rgba(237, 41, 57, 0.2); }
+        .btn-primary { background: #ed2939; border-color: #ed2939; color: #fff; }
+        .btn-primary:hover { background: #ff3344; border-color: #ff3344; box-shadow: 0 0 30px rgba(237, 41, 57, 0.3); }
+        .btn-blue { border-color: #002395; color: #4a7aff; }
+        .btn-blue:hover { background: #002395; border-color: #002395; color: #fff; }
+        .btn-sm { padding: 4px 14px; font-size: 0.7em; }
+        .filtros { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-bottom: 20px; }
+        .filtro-btn {
+            background: #14141c;
+            color: #aaa;
+            border: 2px solid #252535;
+            padding: 6px 16px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 0.8em;
+            font-weight: 500;
+            transition: all 0.25s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+        .filtro-btn:hover { background: #2a2a3a; color: #fff; border-color: #ed2939; }
+        .filtro-btn.active { background: #ed2939; color: #fff; border-color: #ed2939; box-shadow: 0 0 20px rgba(237, 41, 57, 0.15); }
+        .search-box { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        .search-box input {
+            background: #14141c;
+            border: 2px solid #252535;
+            border-radius: 40px;
+            padding: 10px 25px;
+            color: #e8e8e8;
+            font-size: 0.9em;
+            width: 300px;
+            max-width: 80%;
+            font-family: 'Poppins', sans-serif;
+            transition: border-color 0.3s;
+        }
+        .search-box input:focus { outline: none; border-color: #ed2939; }
+        .search-box input::placeholder { color: #5a5a6a; }
+        .charts-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; margin-bottom: 25px; }
+        .chart-container {
+            background: linear-gradient(145deg, #12121a, #1a1a24);
+            border-radius: 18px;
+            padding: 18px 16px 14px;
+            border: 1px solid #252535;
+            transition: all 0.3s ease;
+        }
+        .chart-container:hover { border-color: #ed2939; box-shadow: 0 0 30px rgba(237, 41, 57, 0.05); }
+        .chart-title { color: #ed2939; font-size: 0.95em; font-weight: 700; text-align: center; margin-bottom: 12px; letter-spacing: 1px; text-transform: uppercase; }
+        .chart-container canvas { max-height: 200px; }
+        .leaderboard { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 25px; }
+        .leader-card {
+            background: linear-gradient(145deg, #12121a, #1a1a24);
+            border-radius: 18px;
+            padding: 18px 20px;
+            border: 1px solid #252535;
+            transition: all 0.3s ease;
+        }
+        .leader-card:hover { border-color: #ed2939; }
+        .leader-card h4 { color: #9a9aaa; font-size: 0.7em; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; font-weight: 600; }
+        .leader-item { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid #1a1a24; font-size: 0.85em; }
+        .leader-item:last-child { border-bottom: none; }
+        .leader-item .rank { color: #5a5a6a; font-weight: 600; margin-right: 10px; min-width: 20px; }
+        .leader-item .name { color: #e8e8e8; flex: 1; }
+        .leader-item .count { color: #ed2939; font-weight: 700; }
+        .leader-item .rank.gold { color: #fbbf24; }
+        .leader-item .rank.silver { color: #9ca3af; }
+        .leader-item .rank.bronze { color: #d97706; }
+        .pagination { display: flex; justify-content: center; align-items: center; gap: 12px; margin: 15px 0 20px; }
+        .page-link {
+            background: #1a1a24;
+            color: #ed2939;
+            padding: 6px 16px;
+            border-radius: 10px;
+            text-decoration: none;
+            border: 1px solid #2a2a3a;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            font-size: 0.85em;
+        }
+        .page-link:hover { background: #ed2939; color: #fff; border-color: #ed2939; transform: scale(1.05); }
+        .page-info { color: #9a9aaa; font-size: 0.85em; }
+        .crime-list {
+            background: linear-gradient(145deg, #12121a, #1a1a24);
+            border-radius: 18px;
+            padding: 18px 20px;
+            border: 1px solid #252535;
+        }
+        .crime-list-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px; }
+        .crime-list-title { color: #ed2939; font-size: 1.1em; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+        .crime-list-title .badge-count { background: #2a2a3a; color: #9a9aaa; font-size: 0.6em; padding: 2px 12px; border-radius: 30px; font-weight: 400; }
+        .crime-card {
+            background: #0d0d15;
+            margin-bottom: 10px;
+            padding: 14px 18px;
+            border-radius: 12px;
+            border-left: 4px solid #ed2939;
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+        .crime-card:hover { background: #16161f; transform: translateX(6px); border-left-color: #002395; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .crime-card .crime-title { font-weight: 600; font-size: 0.95em; color: #f0f0f0; margin-bottom: 4px; }
+        .crime-card .crime-title a { color: inherit; text-decoration: none; }
+        .crime-card .crime-title a:hover { color: #ed2939; }
+        .crime-card .crime-meta { display: flex; flex-wrap: wrap; gap: 8px; font-size: 0.7em; color: #8a8a9a; align-items: center; }
+        .crime-card .crime-meta .badge { background: #14141c; padding: 2px 10px; border-radius: 20px; border: 1px solid #252535; }
+        .crime-card .crime-meta .badge-tipo { font-weight: 600; border-color: #ed2939; color: #ed2939; }
+        .crime-card .crime-meta .badge-severity { font-weight: 600; }
+        .crime-card .crime-meta .badge-severity.high { color: #f87171; border-color: #f87171; }
+        .crime-card .crime-meta .badge-severity.medium { color: #fbbf24; border-color: #fbbf24; }
+        .crime-card .crime-meta .badge-severity.low { color: #4ade80; border-color: #4ade80; }
+        .crime-card .crime-id { font-size: 0.6em; color: #3a3a4a; font-family: monospace; }
+        .severity-bar { height: 3px; background: #1a1a24; border-radius: 4px; margin-top: 6px; overflow: hidden; }
+        .severity-fill { height: 100%; border-radius: 4px; transition: width 0.8s ease; background: linear-gradient(90deg, #4a7aff, #ed2939); }
+        .footer { text-align: center; padding: 20px; margin-top: 30px; color: #5a5a6a; font-size: 0.75em; border-top: 1px solid #1a1a24; letter-spacing: 0.5px; }
+        .footer a { color: #ed2939; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .stat-card, .chart-container, .leader-card, .crime-card { animation: fadeInUp 0.5s ease forwards; }
+        .stat-card:nth-child(1) { animation-delay: 0.05s; }
+        .stat-card:nth-child(2) { animation-delay: 0.1s; }
+        .stat-card:nth-child(3) { animation-delay: 0.15s; }
+        .stat-card:nth-child(4) { animation-delay: 0.2s; }
+        .stat-card:nth-child(5) { animation-delay: 0.25s; }
+        .stat-card:nth-child(6) { animation-delay: 0.3s; }
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2em; letter-spacing: 3px; }
+            .header-content { padding: 15px 20px; }
+            .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+            .stat-number { font-size: 1.6em; }
+            .charts-row { grid-template-columns: 1fr; }
+            .leaderboard { grid-template-columns: 1fr; }
+            .search-box input { width: 100%; max-width: 100%; }
+        }
+        @media (max-width: 480px) {
+            .stats-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+            .stat-card { padding: 12px 10px; }
+            .stat-number { font-size: 1.3em; }
+            .header h1 { font-size: 1.5em; }
+            .btn { font-size: 0.7em; padding: 6px 14px; }
+        }
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="header"><h1>🔪 DIABOLIC FRANCE</h1><p>{{ texts.subtitle }}</p></div>
-    <div class="stats-grid">
-        <div class="stat-card"><div class="stat-number">{{ stats.total }}</div><div>{{ texts.stats_total }}</div></div>
-        <div class="stat-card"><div class="stat-number">{{ stats.ultimos_7dias }}</div><div>⚡ 7 {{ texts.days }}</div></div>
-        <div class="stat-card"><div class="stat-number">{{ stats.ultimos_30dias }}</div><div>🔥 30 {{ texts.days }}</div></div>
-        <div class="stat-card"><div class="stat-number">{{ periodicos_activos }}</div><div>📰 {{ texts.fuentes }}</div></div>
-    </div>
-    <div style="text-align:center">
-        <form action="/actualizar" method="post" style="display:inline"><button class="btn">🔄 {{ texts.actualizar }}</button></form>
-        <a href="/exportar/json" class="btn">📥 JSON</a><a href="/exportar/csv" class="btn">📥 CSV</a>
-        <a href="/exportar/html" class="btn">📄 HTML</a>
-        <a href="?lang=es" class="btn">🇪🇸</a><a href="?lang=fr" class="btn">🇫🇷</a><a href="?lang=it" class="btn">🇮🇹</a>
-    </div>
-    <div class="filtros">
-        <a href="/?page=1&lang={{ lang }}" class="filtro-btn {% if filtro=='todo' %}active{% endif %}">📅 {{ texts.todo }}</a>
-        <a href="/filtro/7d?page=1&lang={{ lang }}" class="filtro-btn {% if filtro=='7d' %}active{% endif %}">⚡ 7d</a>
-        <a href="/filtro/30d?page=1&lang={{ lang }}" class="filtro-btn {% if filtro=='30d' %}active{% endif %}">🔥 30d</a>
-        <a href="/filtro/90d?page=1&lang={{ lang }}" class="filtro-btn {% if filtro=='90d' %}active{% endif %}">📊 90d</a>
-    </div>
-    <div class="charts-row">
-        <div class="chart-container"><canvas id="depChart"></canvas></div>
-        <div class="chart-container"><canvas id="typeChart"></canvas></div>
-    </div>
-    <div class="pagination">
-        {% if page > 1 %}<a href="?page={{ page-1 }}&lang={{ lang }}&filtro={{ filtro }}" class="page-link">← {{ texts.prev }}</a>{% endif %}
-        <span>{{ texts.page }} {{ page }} / {{ total_pages }}</span>
-        {% if page < total_pages %}<a href="?page={{ page+1 }}&lang={{ lang }}&filtro={{ filtro }}" class="page-link">{{ texts.next }} →</a>{% endif %}
-    </div>
-    <div class="chart-container">
-        <h3>📰 {{ texts.last_news }}</h3>
-        {% for c in crimes_paginados %}
-        <div class="crime-card">
-            <div><strong>{{ c.titulo[:150] }}...</strong></div>
-            <div style="color:#888;font-size:0.9em">📍 {{ c.departement }} | 📅 {{ c.fecha }} | 📰 {{ c.fuente }} | 🔪 {{ tipos_crimen[c.tipo][lang] if c.tipo in tipos_crimen and lang in tipos_crimen[c.tipo] else c.tipo }}</div>
-            <div class="severity-bar"><div class="severity-fill" style="width: {{ c.severidad * 10 }}%"></div></div>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>🔪 DIABOLIC FRANCE</h1>
+                <div class="subtitle">{{ texts.subtitle }}</div>
+                <div class="badge-version">v{{ version }} · Surveillance Criminelle</div>
+                <div class="lang-flags">
+                    <a href="?lang=es" title="Español">🇪🇸</a>
+                    <a href="?lang=fr" title="Français">🇫🇷</a>
+                    <a href="?lang=it" title="Italiano">🇮🇹</a>
+                </div>
+            </div>
         </div>
-        {% endfor %}
+        <div class="clock-container"><i class="fas fa-clock"></i> <span id="clock">--:--:--</span> <span style="margin-left:15px;">📅 <span id="date">--/--/----</span></span></div>
+        <div class="stats-grid">
+            <div class="stat-card"><span class="stat-icon">📊</span><div class="stat-number">{{ stats.total }}</div><div class="stat-label">{{ texts.stats_total }}</div><div class="stat-trend {% if stats.total > 0 %}up{% else %}stable{% endif %}">{% if stats.total > 0 %}⬆ Activo{% else %}⏸ Sin datos{% endif %}</div></div>
+            <div class="stat-card"><span class="stat-icon">⚡</span><div class="stat-number">{{ stats.ultimos_7dias }}</div><div class="stat-label">Últimos 7 días</div><div class="stat-trend {% if stats.ultimos_7dias > 0 %}up{% else %}stable{% endif %}">{% if stats.ultimos_7dias > 0 %}⬆ Tendencia{% else %}⏸ Sin datos{% endif %}</div></div>
+            <div class="stat-card"><span class="stat-icon">🔥</span><div class="stat-number">{{ stats.ultimos_30dias }}</div><div class="stat-label">Últimos 30 días</div><div class="stat-trend {% if stats.ultimos_30dias > 0 %}up{% else %}stable{% endif %}">{% if stats.ultimos_30dias > 0 %}⬆ Alta actividad{% else %}⏸ Sin datos{% endif %}</div></div>
+            <div class="stat-card"><span class="stat-icon">📰</span><div class="stat-number">{{ periodicos_activos }}</div><div class="stat-label">{{ texts.fuentes }}</div><div class="stat-trend {% if periodicos_activos > 0 %}up{% else %}stable{% endif %}">{% if periodicos_activos > 0 %}✅ Activas{% else %}⚠️ Sin fuentes{% endif %}</div></div>
+            <div class="stat-card"><span class="stat-icon">🏴</span><div class="stat-number">{{ stats.departements|length }}</div><div class="stat-label">{{ texts.departamentos }}</div><div class="stat-trend {% if stats.departements|length > 0 %}up{% else %}stable{% endif %}">{% if stats.departements|length > 0 %}📍 Activos{% else %}⏸ Sin datos{% endif %}</div></div>
+            <div class="stat-card"><span class="stat-icon">🔪</span><div class="stat-number">{{ stats.tipos|length }}</div><div class="stat-label">{{ texts.cmd_tipos }}</div><div class="stat-trend {% if stats.tipos|length > 0 %}up{% else %}stable{% endif %}">{% if stats.tipos|length > 0 %}🔍 Detectados{% else %}⏸ Sin datos{% endif %}</div></div>
+        </div>
+        <div class="btn-group">
+            <form action="/actualizar" method="post" style="display:inline"><button class="btn btn-primary"><i class="fas fa-sync-alt"></i> {{ texts.actualizar }}</button></form>
+            <a href="/exportar/json" class="btn btn-blue"><i class="fas fa-file-code"></i> JSON</a>
+            <a href="/exportar/csv" class="btn btn-blue"><i class="fas fa-file-csv"></i> CSV</a>
+            <a href="/exportar/html" class="btn btn-blue"><i class="fas fa-file-alt"></i> HTML</a>
+            <button class="btn" onclick="window.location.reload();"><i class="fas fa-redo-alt"></i> Recargar</button>
+        </div>
+        <div class="filtros">
+            <a href="/?page=1&lang={{ lang }}" class="filtro-btn {% if filtro == 'todo' %}active{% endif %}">📅 {{ texts.todo }}</a>
+            <a href="/filtro/7d?page=1&lang={{ lang }}" class="filtro-btn {% if filtro == '7d' %}active{% endif %}">⚡ 7d</a>
+            <a href="/filtro/30d?page=1&lang={{ lang }}" class="filtro-btn {% if filtro == '30d' %}active{% endif %}">🔥 30d</a>
+            <a href="/filtro/90d?page=1&lang={{ lang }}" class="filtro-btn {% if filtro == '90d' %}active{% endif %}">📊 90d</a>
+        </div>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 Buscar crímenes..." onkeyup="filterCrimes()">
+            <button class="btn btn-primary btn-sm" onclick="filterCrimes()"><i class="fas fa-search"></i> Buscar</button>
+            <button class="btn btn-sm" onclick="clearSearch()"><i class="fas fa-times"></i> Limpiar</button>
+        </div>
+        <div class="charts-row">
+            <div class="chart-container"><div class="chart-title">📍 {{ texts.departamentos }}</div><canvas id="depChart"></canvas></div>
+            <div class="chart-container"><div class="chart-title">🔪 {{ texts.cmd_tipos }}</div><canvas id="typeChart"></canvas></div>
+        </div>
+        <div class="leaderboard">
+            <div class="leader-card">
+                <h4><i class="fas fa-trophy" style="color:#fbbf24;"></i> Top Departamentos</h4>
+                {% set dept_list = stats.departements.items()|list|sort(attribute='1', reverse=true) %}
+                {% for dept, count in dept_list[:5] %}
+                <div class="leader-item"><span class="rank {% if loop.index == 1 %}gold{% elif loop.index == 2 %}silver{% elif loop.index == 3 %}bronze{% endif %}">{{ loop.index }}</span><span class="name">{{ dept }}</span><span class="count">{{ count }}</span></div>
+                {% else %}
+                <div class="leader-item"><span class="name" style="color:#5a5a6a;">Sin datos</span></div>
+                {% endfor %}
+            </div>
+            <div class="leader-card">
+                <h4><i class="fas fa-skull" style="color:#ed2939;"></i> Top Tipos</h4>
+                {% set tipo_list = stats.tipos.items()|list|sort(attribute='1', reverse=true) %}
+                {% for tipo, count in tipo_list[:5] %}
+                <div class="leader-item"><span class="rank {% if loop.index == 1 %}gold{% elif loop.index == 2 %}silver{% elif loop.index == 3 %}bronze{% endif %}">{{ loop.index }}</span><span class="name">{{ tipo|upper }}</span><span class="count">{{ count }}</span></div>
+                {% else %}
+                <div class="leader-item"><span class="name" style="color:#5a5a6a;">Sin datos</span></div>
+                {% endfor %}
+            </div>
+            <div class="leader-card">
+                <h4><i class="fas fa-newspaper" style="color:#4a7aff;"></i> Top Fuentes</h4>
+                {% set fuente_list = stats.fuentes.items()|list|sort(attribute='1', reverse=true) %}
+                {% for fuente, count in fuente_list[:5] %}
+                <div class="leader-item"><span class="rank {% if loop.index == 1 %}gold{% elif loop.index == 2 %}silver{% elif loop.index == 3 %}bronze{% endif %}">{{ loop.index }}</span><span class="name">{{ fuente|truncate(25) }}</span><span class="count">{{ count }}</span></div>
+                {% else %}
+                <div class="leader-item"><span class="name" style="color:#5a5a6a;">Sin datos</span></div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="pagination">
+            {% if page > 1 %}<a href="?page={{ page-1 }}&lang={{ lang }}&filtro={{ filtro }}" class="page-link"><i class="fas fa-chevron-left"></i> {{ texts.prev }}</a>{% endif %}
+            <span class="page-info">{{ texts.page }} {{ page }} / {{ total_pages }}</span>
+            {% if page < total_pages %}<a href="?page={{ page+1 }}&lang={{ lang }}&filtro={{ filtro }}" class="page-link">{{ texts.next }} <i class="fas fa-chevron-right"></i></a>{% endif %}
+        </div>
+        <div class="crime-list" id="crimeList">
+            <div class="crime-list-header">
+                <div class="crime-list-title"><i class="fas fa-skull"></i> {{ texts.last_news }} <span class="badge-count">{{ total_items }} {{ texts.items }}</span></div>
+                <div style="font-size:0.7em;color:#5a5a6a;"><i class="fas fa-arrow-right"></i> Click para abrir</div>
+            </div>
+            {% for c in crimes_paginados %}
+            <div class="crime-card crime-item" data-search="{{ c.titulo|lower }} {{ c.departement|lower }} {{ c.tipo|lower }} {{ c.fuente|lower }}">
+                <div class="crime-title"><a href="{{ c.url or '#' }}" target="_blank" rel="noopener noreferrer">{{ c.titulo[:170] }}{% if c.titulo|length > 170 %}...{% endif %}</a></div>
+                <div class="crime-meta">
+                    <span class="badge"><i class="fas fa-map-marker-alt"></i> {{ c.departement or '?' }}</span>
+                    <span class="badge"><i class="fas fa-calendar-alt"></i> {{ c.fecha }}</span>
+                    <span class="badge"><i class="fas fa-newspaper"></i> {{ c.fuente|truncate(20) }}</span>
+                    <span class="badge badge-tipo"><i class="fas fa-tag"></i> {{ c.tipo|upper }}</span>
+                    <span class="badge badge-severity {% if c.severidad >= 7 %}high{% elif c.severidad >= 4 %}medium{% else %}low{% endif %}"><i class="fas fa-fire"></i> Severidad: {{ c.severidad }}/10</span>
+                    <span class="crime-id">#{{ c.id[:8] }}</span>
+                </div>
+                <div class="severity-bar"><div class="severity-fill" style="width: {{ c.severidad * 10 }}%"></div></div>
+            </div>
+            {% else %}
+            <div style="text-align:center;padding:40px 0;color:#5a5a6a;"><i class="fas fa-search" style="font-size:2.5em;display:block;margin-bottom:12px;color:#3a3a4a;"></i>{{ texts.sin_datos }}<p style="font-size:0.8em;margin-top:8px;">Ejecuta "Actualizar" para cargar crímenes</p></div>
+            {% endfor %}
+        </div>
+        <div class="footer">
+            <p><i class="fas fa-shield-alt" style="color:#ed2939;"></i> DIABOLIC FRANCE v{{ version }} · {{ periodicos_activos }} {{ texts.fuentes }} · {{ stats.total }} {{ texts.items }}</p>
+            <p style="margin-top:4px;font-size:0.7em;color:#3a3a4a;">🛡️ "L'union fait la force" · By Condor2026 · SpectrumSecurity</p>
+        </div>
     </div>
-</div>
-<script>
-    new Chart(document.getElementById('depChart'),{type:'bar',data:{labels:{{ condados_labels|tojson }}, datasets:[{label:'Crimes',data:{{ condados_data|tojson }},backgroundColor:'#cc0000'}]}});
-    new Chart(document.getElementById('typeChart'),{type:'doughnut',data:{labels:{{ tipos_labels|tojson }}, datasets:[{data:{{ tipos_data|tojson }},backgroundColor:['#cc0000','#ff6600','#990000','#ff4444','#ffaa00','#ff00ff','#880000','#000000','#888888']}]}});
-</script>
+    <script>
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('clock').textContent = now.toLocaleTimeString('{{ lang }}');
+            document.getElementById('date').textContent = now.toLocaleDateString('{{ lang }}', { year: 'numeric', month: 'long', day: 'numeric' });
+        }
+        updateClock();
+        setInterval(updateClock, 1000);
+        
+        function filterCrimes() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const items = document.querySelectorAll('.crime-item');
+            let visibleCount = 0;
+            items.forEach(function(item) {
+                const searchData = item.getAttribute('data-search') || '';
+                if (query === '' || searchData.includes(query)) {
+                    item.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            const noResults = document.getElementById('noResults');
+            if (visibleCount === 0 && items.length > 0) {
+                if (!noResults) {
+                    const msg = document.createElement('div');
+                    msg.id = 'noResults';
+                    msg.style.cssText = 'text-align:center;padding:30px 0;color:#5a5a6a;';
+                    msg.innerHTML = '<i class="fas fa-search" style="font-size:2em;display:block;margin-bottom:10px;"></i> No se encontraron resultados para "<span style="color:#ed2939;">' + query + '</span>"';
+                    document.getElementById('crimeList').appendChild(msg);
+                } else {
+                    noResults.innerHTML = '<i class="fas fa-search" style="font-size:2em;display:block;margin-bottom:10px;"></i> No se encontraron resultados para "<span style="color:#ed2939;">' + query + '</span>"';
+                    noResults.style.display = 'block';
+                }
+            } else if (noResults) {
+                noResults.style.display = 'none';
+            }
+        }
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            filterCrimes();
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.severity-fill').forEach(function(el) {
+                const width = el.style.width;
+                el.style.width = '0%';
+                setTimeout(function() { el.style.width = width; }, 150);
+            });
+        });
+        new Chart(document.getElementById('depChart'), {
+            type: 'bar',
+            data: {
+                labels: {{ condados_labels|tojson }},
+                datasets: [{
+                    label: 'Crimes',
+                    data: {{ condados_data|tojson }},
+                    backgroundColor: ['rgba(237,41,57,0.85)','rgba(0,35,149,0.85)','rgba(237,41,57,0.65)','rgba(0,35,149,0.65)','rgba(237,41,57,0.45)','rgba(0,35,149,0.45)'],
+                    borderColor: '#ed2939',
+                    borderWidth: 2,
+                    borderRadius: 6,
+                    barPercentage: 0.65,
+                    hoverBackgroundColor: '#ed2939'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: { legend: { display: false }, tooltip: { backgroundColor: '#0d0d15', titleColor: '#ed2939', bodyColor: '#e8e8e8', borderColor: '#252535', borderWidth: 1, cornerRadius: 8 } },
+                scales: { y: { ticks: { color: '#8a8a9a', font: { size: 10 } }, grid: { color: '#1a1a24', drawBorder: false } }, x: { ticks: { color: '#8a8a9a', font: { size: 10 } }, grid: { display: false } } },
+                animation: { duration: 800, easing: 'easeInOutQuart' }
+            }
+        });
+        new Chart(document.getElementById('typeChart'), {
+            type: 'doughnut',
+            data: {
+                labels: {{ tipos_labels|tojson }},
+                datasets: [{
+                    data: {{ tipos_data|tojson }},
+                    backgroundColor: ['#ed2939','#002395','#ff6b6b','#4a7aff','#fbbf24','#a855f7','#ef4444','#111827','#6b7280'],
+                    borderWidth: 3,
+                    borderColor: '#0a0a0f',
+                    hoverOffset: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                cutout: '55%',
+                plugins: {
+                    legend: { position: 'bottom', labels: { color: '#b8b8c8', padding: 10, usePointStyle: true, pointStyle: 'circle', font: { size: 9 } } },
+                    tooltip: { backgroundColor: '#0d0d15', titleColor: '#ed2939', bodyColor: '#e8e8e8', borderColor: '#252535', borderWidth: 1, cornerRadius: 8 }
+                },
+                animation: { animateRotate: true, duration: 800 }
+            }
+        });
+    </script>
 </body>
 </html>
 '''
