@@ -1,4 +1,4 @@
-# 🗺️ HOJA DE RUTA (ROADMAP) - AIDE-FRANCE v3.0
+# 🗺️ HOJA DE RUTA (ROADMAP) - DIABOLIC FRANCE v3.0
 
 ## ✅ VERSIÓN ACTUAL (3.0.0) - 12 de Junio de 2026
 
@@ -112,7 +112,7 @@ Si quieres ayudar a que estas características lleguen antes:
 |------------|-------|
 | **🐙 GitHub** | [@Condor2026](https://github.com/Condor2026) |
 | **📧 Email** | spectrumsecurity@proton.me |
-| **🔪 Proyecto** | [AIDE-FRANCE](https://github.com/Condor2026/aide_france) |
+| **🔪 Proyecto** | [DIABOLIC FRANCE](https://github.com/Condor2026/diabolic_france) |
 
 ---
 
@@ -123,6 +123,22 @@ Si quieres ayudar a que estas características lleguen antes:
 </p>
 
 <p align="center">
-  <b>🔪 AIDE-FRANCE - Vigilamos para proteger</b><br>
+  <b>🔪 DIABOLIC FRANCE - Vigilamos para proteger</b><br>
   <i>"Un gran poder conlleva una gran responsabilidad" - Spider-Man</i>
 </p>
+```
+
+---
+
+## ✅ RESUMEN DE CAMBIOS EN EL ROADMAP
+
+| Sección | Cambio |
+|---------|--------|
+| **Nombre del proyecto** | AIDE-FRANCE → DIABOLIC FRANCE |
+| **Versión** | 3.0.0 |
+| **Enfoque** | Aide sociale → Criminalité |
+| **Tipos** | 9 aides sociales → 9 types criminels |
+| **Fuentes** | 30+ → 55+ |
+| **Départements** | 96 → 101 |
+| **GitHub URL** | `aide_france` → `diabolic_france` |
+| **Contacto** | Actualizado |
