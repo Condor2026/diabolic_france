@@ -1728,8 +1728,8 @@ HTML_TEMPLATE = '''
             <button class="btn btn-sm" onclick="clearSearch()"><i class="fas fa-times"></i> Limpiar</button>
         </div>
         <div class="charts-row">
-            <div class="chart-container"><div class="chart-title">📍 {{ texts.departamentos }}</div><canvas id="depChart"></canvas></div>
-            <div class="chart-container"><div class="chart-title">🔪 {{ texts.cmd_tipos }}</div><canvas id="typeChart"></canvas></div>
+            <div class="chart-container"><div class="chart-title">📍 DEPARTAMENTOS{{ texts.departamentos }}</div><canvas id="depChart"></canvas></div>
+            <div class="chart-container"><div class="chart-title">🔪 TIPOS DE CRIMEN{{ texts.cmd_tipos }}</div><canvas id="typeChart"></canvas></div>
         </div>
         <div class="leaderboard">
             <div class="leader-card">
