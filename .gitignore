@@ -23,16 +23,17 @@ wheels/
 .installed.cfg
 *.egg
 
-# Datos generados por AIDE FRANCE
-aide_france_data.json
-aide_france_backup.json
-url_cache_france.json
-etat_sources_france.json
+# Datos generados por DIABOLIC FRANCE
+diabolic_france_data.json
+diabolic_france_backup.json
+url_cache_diabolic_france.json
+etat_sources_diabolic_france.json
+diabolic_france.log
 
 # Exportaciones
-aide_france_export.json
-aide_france_export.csv
-aide_france_report.html
+diabolic_france_export.json
+diabolic_france_export.csv
+diabolic_france_report.html
 
 # Archivos temporales
 *.log
