@@ -80,7 +80,7 @@
   <img src="https://img.shields.io/badge/status-crime_intelligence_active-success?style=for-the-badge">
 </p>
 
-<h1 align="center">🔪 AIDE-FRANCE v3.0</h1>
+<h1 align="center">🔪 DIABOLIC FRANCE v3.0</h1>
 <h3 align="center">🇫🇷 PLATEFORME DE RENSEIGNEMENT CRIMINEL FRANÇAISE 🇫🇷</h3>
 <h3 align="center">🇪🇸 PLATAFORMA DE INTELIGENCIA CRIMINAL FRANCESA 🇪🇸</h3>
 <h3 align="center">🇮🇹 PIATTAFORMA DI INTELLIGENZA CRIMINALE FRANCESE 🇮🇹</h3>
@@ -101,7 +101,7 @@
 
 ## 📋 TABLE DES MATIÈRES
 
-- [🔪 Qu'est-ce que AIDE-FRANCE ?](#-quest-ce-que-aide-france)
+- [🔪 Qu'est-ce que DIABOLIC FRANCE ?](#-quest-ce-que-diabolic-france)
 - [⚡ Caractéristiques Principales](#-caractéristiques-principales)
 - [💻 Requisitos del Sistema](#-requisitos-del-sistema)
 - [📦 Installation Pas à Pas](#-installation-pas-à-pas)
@@ -117,9 +117,9 @@
 
 ---
 
-## 🔪 QU'EST-CE QUE AIDE-FRANCE ?
+## 🔪 QU'EST-CE QUE DIABOLIC FRANCE ?
 
-**AIDE-FRANCE** est une plateforme d'intelligence criminelle **open source** conçue spécifiquement pour la **France**. Le système analyse en temps réel plus de 55 sources médiatiques françaises pour détecter, classifier et géolocaliser les activités criminelles.
+**DIABOLIC FRANCE** est une plateforme d'intelligence criminelle **open source** conçue spécifiquement pour la **France**. Le système analyse en temps réel plus de 55 sources médiatiques françaises pour détecter, classifier et géolocaliser les activités criminelles.
 
 | # | Action | Description |
 |---|--------|-------------|
@@ -225,8 +225,8 @@ python --version
 
 ```bash
 # PASO 1: Cloner le dépôt
-git clone https://github.com/Condor2026/aide_france
-cd aide_france
+git clone https://github.com/Condor2026/diabolic_france
+cd diabolic_france
 
 # PASO 2: Créer environnement virtuel
 python3 -m venv venv
@@ -237,15 +237,15 @@ pip install --upgrade pip
 pip install -r requirements.txt
 
 # PASO 4: Lancer
-python3 aide_france.py
+python3 diabolic_france.py
 ```
 
 ### 🪟 Windows
 
 ```powershell
 # PASO 1: Cloner le dépôt
-git clone https://github.com/Condor2026/aide_france
-cd aide_france
+git clone https://github.com/Condor2026/diabolic_france
+cd diabolic_france
 
 # PASO 2: Créer environnement virtuel
 python -m venv venv
@@ -256,14 +256,14 @@ pip install --upgrade pip
 pip install -r requirements.txt
 
 # PASO 4: Lancer
-python aide_france.py
+python diabolic_france.py
 ```
 
 ### 🐳 Docker
 
 ```bash
-docker build -t aide_france .
-docker run -p 5015:5015 aide_france
+docker build -t diabolic_france .
+docker run -p 5015:5015 diabolic_france
 ```
 
 ---
@@ -475,24 +475,24 @@ Ouvrir navigateur : **http://localhost:5015**
 ## 📁 STRUCTURE DU PROJET
 
 ```
-aide_france/
+diabolic_france/
 │
-├── 📄 aide_france.py              # Script principal (2500+ lignes)
-├── 📄 requirements.txt            # Dépendances Python
-├── 📄 README.md                   # Ce document
-├── 📄 LICENSE                     # GPL v3
-├── 🐳 Dockerfile                  # Build Docker
+├── 📄 diabolic_france.py              # Script principal (2500+ lignes)
+├── 📄 requirements.txt                # Dépendances Python
+├── 📄 README.md                       # Ce document
+├── 📄 LICENSE                         # GPL v3
+├── 🐳 Dockerfile                      # Build Docker
 │
-├── 📊 aide_france.json            # Base de données des incidents
-├── 💾 aide_france_backup.json     # Sauvegarde automatique
-├── 🗺️ url_cache_aide_france.json  # Cache URLs découvertes
-├── 📡 etat_sources_aide_france.json # État de chaque source
+├── 📊 diabolic_france.json            # Base de données des incidents
+├── 💾 diabolic_france_backup.json     # Sauvegarde automatique
+├── 🗺️ url_cache_diabolic_france.json  # Cache URLs découvertes
+├── 📡 etat_sources_diabolic_france.json # État de chaque source
 │
-├── 📤 aide_france_export.json     # Export manuel (JSON)
-├── 📤 aide_france_export.csv      # Export manuel (CSV)
-├── 📤 aide_france_report.html     # Export manuel (HTML)
+├── 📤 diabolic_france_export.json     # Export manuel (JSON)
+├── 📤 diabolic_france_export.csv      # Export manuel (CSV)
+├── 📤 diabolic_france_report.html     # Export manuel (HTML)
 │
-└── 📁 exports/                    # Exports générés
+└── 📁 exports/                        # Exports générés
 ```
 
 ---
@@ -514,7 +514,7 @@ Option 8 (Vérifier sources) → Auto-discovery actif
 ### ❌ Port 5015 déjà utilisé
 
 ```python
-# Dans aide_france.py
+# Dans diabolic_france.py
 PUERTO = 5016  # Changer le port
 ```
 
@@ -569,7 +569,7 @@ the Free Software Foundation, either version 3 of the License, or
 | Plateforme | Lien |
 |------------|------|
 | **GitHub** | [@Condor2026](https://github.com/Condor2026) |
-| **Projet** | [AIDE-FRANCE](https://github.com/Condor2026/aide_france) |
+| **Projet** | [DIABOLIC FRANCE](https://github.com/Condor2026/diabolic_france) |
 | **Email** | spectrumsecurity@proton.me |
 
 ---
@@ -581,7 +581,7 @@ Si ce projet vous a été utile, pensez à lui donner une ⭐ sur GitHub.
 ---
 
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=18&duration=3000&pause=500&color=FF0000&center=true&vCenter=true&width=500&lines=🇫🇷+AIDE-FRANCE;Surveiller+pour+protéger;Data-driven+intelligence;Sécurité+publique">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=18&duration=3000&pause=500&color=FF0000&center=true&vCenter=true&width=500&lines=🔪+DIABOLIC+FRANCE;Surveiller+pour+protéger;Data-driven+intelligence;Sécurité+publique">
 </p>
 
 <p align="center">
@@ -596,22 +596,23 @@ Si ce projet vous a été utile, pensez à lui donner une ⭐ sur GitHub.
 </p>
 
 <p align="center">
-  <i>🔪 AIDE-FRANCE - Vigilamus pro tuendo (Nous surveillons pour protéger)</i>
+  <i>🔪 DIABOLIC FRANCE - Vigilamus pro tuendo (Nous surveillons pour protéger)</i>
 </p>
+```
 
 ---
 
-## ✅ RÉSUMÉ DES CHANGEMENTS
+## ✅ Resumen de los cambios
 
-| Élément | Avant (Aide sociale) | Après (Crime) |
-|---------|---------------------|---------------|
-| **Nom** | AIDE FRANCE | AIDE-FRANCE |
-| **Version** | v1.0 | v3.0 |
-| **Couleur titre** | Bleu (#0055A4) | Rouge (#FF0000) |
-| **Icône** | 🤝 | 🔪 |
+| Elemento | Antes (README Aide France) | Ahora (README Diabolic France) |
+|----------|----------------------------|--------------------------------|
+| **Título** | AIDE-FRANCE v3.0 | DIABOLIC FRANCE v3.0 |
+| **Descripción** | Plateforme d'entraide sociale | Plateforme de renseignement criminel |
 | **Slogan** | "Surveiller pour aider" | "Surveiller pour protéger" |
-| **Types** | 9 aides sociales | 9 types criminels |
-| **Mots-clés** | logement, emploi, alimentation | drogue, gangs, meurtre |
-| **Sources** | 30+ | 55+ |
-| **Départements** | 96 | 101 |
-| **Badges** | mis à jour | tous actualisés |
+| **Badges** | Aide sociale | Crime intelligence |
+| **Íconos** | 🤝, 📊, 🇫🇷 | 🔪, 📊, 🇫🇷 |
+| **Colores** | Azul / Verde | Rojo / Negro |
+| **Tipos** | Ayuda social | Tipos de crimen |
+| **Palabras clave** | logement, emploi, solidarité | drogue, gangs, terrorisme |
+| **Nombre del proyecto** | aide_france | diabolic_france |
+| **Archivos** | aide_france_*.json | diabolic_france_*.json |
