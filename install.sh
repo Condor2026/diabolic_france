@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "🇫🇷 AIDE FRANCE - Instalador"
+echo "🇫🇷 DIABOLIC FRANCE - Instalador"
 echo "=========================="
 
 # Verificar Python
@@ -16,4 +16,4 @@ pip3 install requests beautifulsoup4 flask lxml
 mkdir -p docs examples exports
 
 # Ejecutar
-python3 aide_france.py
+python3 diabolic_france.py
