@@ -1,7 +1,7 @@
 # 🗼🇫🇷 AVISO LEGAL Y ÉTICO - DIABOLIC FRANCIA 🇫🇷🗼
 
 ## 1. PROPÓSITO DE LA HERRAMIENTA
-aide_france es una herramienta OSINT (Open Source Intelligence) de código abierto diseñada para **analizar noticias públicas** procedentes de periódicos digitales de Francia y detectar **patrones delictivos** (robos, estafas, narcotráfico, violencia, etc.) con fines de:
+Diabolic France es una herramienta OSINT (Open Source Intelligence) de código abierto diseñada para **analizar noticias públicas** procedentes de periódicos digitales de Francia y detectar **patrones delictivos** (robos, estafas, narcotráfico, violencia, etc.) con fines de:
 
 - Periodismo de datos e investigación.
 - Estudios criminológicos y sociológicos.
@@ -12,7 +12,7 @@ aide_france es una herramienta OSINT (Open Source Intelligence) de código abier
 
 ## 2. RESPONSABILIDAD DEL USUARIO
 - El usuario es el **único responsable** del uso que haga de esta herramienta y de la interpretación de los datos obtenidos.
-- Queda **terminantemente prohibido** utilizar DIABOLIC Francia para:
+- Queda **terminantemente prohibido** utilizar Diabolic Francia para:
   - Vigilancia ilegal o no consentida.
   - Perfilamiento de personas físicas.
   - Actividades discriminatorias, racistas, xenófobas o que atenten contra los derechos fundamentales.
@@ -20,12 +20,12 @@ aide_france es una herramienta OSINT (Open Source Intelligence) de código abier
 - Los datos mostrados proceden de **fuentes públicas** (periódicos digitales) y su exactitud depende de dichas fuentes. El usuario debe contrastar la información antes de tomar decisiones basadas en ella.
 
 ## 3. PROTECCIÓN DE DATOS (RGPD)
-- aide_france **no almacena ni procesa datos personales** (nombres, direcciones, DNI, números de teléfono, direcciones IP, cookies, etc.).
+- diabolic_france **no almacena ni procesa datos personales** (nombres, direcciones, DNI, números de teléfono, direcciones IP, cookies, etc.).
 - Únicamente guarda, de forma local en el dispositivo del usuario, metadatos como: titular de la noticia, fecha de publicación, ubicación geográfica aproximada (región o departamento), tipo de delito y fuente.
 - Al no tratar datos personales, la herramienta queda **fuera del ámbito de aplicación del Reglamento General de Protección de Datos (RGPD)**.
 
 ## 4. PROPIEDAD INTELECTUAL
-- Las noticias analizadas pertenecen a sus respectivos medios de comunicación. DIABOLIC Francia se limita a extraer **titulares y metadatos** para su procesamiento, sin republicar los contenidos íntegros ni vulnerar los derechos de autor.
+- Las noticias analizadas pertenecen a sus respectivos medios de comunicación. Diabolic France se limita a extraer **titulares y metadatos** para su procesamiento, sin republicar los contenidos íntegros ni vulnerar los derechos de autor.
 - El código fuente es abierto bajo **licencia GPLv3** y puede ser reutilizado, modificado y distribuido siempre que se mantenga el espíritu ético de la herramienta y se cite la fuente original.
 
 ## 5. EXENCIÓN DE RESPONSABILIDAD
