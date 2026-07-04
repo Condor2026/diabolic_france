@@ -1,5 +1,4 @@
-
-# 📋 CHANGELOG - AIDE-FRANCE v3.0
+# 📋 CHANGELOG - DIABOLIC FRANCE v3.0
 
 ## [3.0.0] - 2026-06-12
 
@@ -7,7 +6,7 @@
 
 | Característica | Descripción |
 |----------------|-------------|
-| **🔪 Sistema de criminalidad** | Adaptación completa de ayuda social a inteligencia criminal |
+| **🔪 Sistema de criminalidad** | Adaptación completa de inteligencia criminal |
 | **🕵️ Auto-discovery URLs** | Busca URLs alternativas automáticamente cuando una fuente falla |
 | **🌍 150+ User-Agents** | Rotación completa de navegadores para evitar bloqueos |
 | **📊 Gráficos interactivos** | Dashboard con Chart.js (barras, donut, línea, ranking) |
@@ -204,7 +203,7 @@
 |------------|------|
 | **🐙 GitHub** | [@Condor2026](https://github.com/Condor2026) |
 | **📧 Email** | spectrumsecurity@proton.me |
-| **🔪 Projet** | [AIDE-FRANCE](https://github.com/Condor2026/aide_france) |
+| **🔪 Projet** | [DIABOLIC FRANCE](https://github.com/Condor2026/diabolic_france) |
 
 ---
 
@@ -216,7 +215,7 @@
 </p>
 
 <p align="center">
-  <b>🔪 AIDE-FRANCE v3.0 - Surveillance criminelle française</b><br>
+  <b>🔪 DIABOLIC FRANCE v3.0 - Surveillance criminelle française</b><br>
   <i>"Un grand pouvoir implique de grandes responsabilités" - Spider-Man</i>
 </p>
 ```
@@ -229,7 +228,7 @@
 |---------|--------|
 | **Versión** | 1.0.0 → 3.0.0 |
 | **Fecha** | 2026-06-12 |
-| **Nombre** | AIDE FRANCE → AIDE-FRANCE |
+| **Nombre** | AIDE FRANCE → DIABOLIC FRANCE |
 | **Icono** | 🤝 → 🔪 |
 | **Enfoque** | Aide sociale → Crime intelligence |
 | **Tipos** | 9 aides sociales → 9 types criminels |
@@ -238,3 +237,6 @@
 | **Nueva sección** | v2.0.0 (Transition) añadida |
 | **Roadmap** | Actualizado con features criminales |
 | **Badges** | Todos actualizados |
+| **Nombres de archivos** | `aide_france_*.json` → `diabolic_france_*.json` |
+| **GitHub URL** | `aide_france` → `diabolic_france` |
+| **Contacto** | Actualizado con nuevos datos |
