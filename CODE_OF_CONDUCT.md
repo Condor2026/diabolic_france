@@ -4,9 +4,9 @@
 
 ### Nuestro compromiso
 
-Con el objetivo de fomentar un entorno abierto y acogedor, nosotros, como contribuyentes y mantenedores de **AIDE FRANCE**, nos comprometemos a hacer que la participación en nuestro proyecto y en nuestra comunidad sea una experiencia libre de acoso para todas las personas, independientemente de su edad, dimensión corporal, discapacidad visible o invisible, etnia, características sexuales, identidad y expresión de género, nivel de experiencia, educación, situación socioeconómica, nacionalidad, apariencia personal, raza, religión o identidad y orientación sexual.
+Con el objetivo de fomentar un entorno abierto y acogedor, nosotros, como contribuyentes y mantenedores de **Diabolic_France**, nos comprometemos a hacer que la participación en nuestro proyecto y en nuestra comunidad sea una experiencia libre de acoso para todas las personas, independientemente de su edad, dimensión corporal, discapacidad visible o invisible, etnia, características sexuales, identidad y expresión de género, nivel de experiencia, educación, situación socioeconómica, nacionalidad, apariencia personal, raza, religión o identidad y orientación sexual.
 
-Este código de conducta se suma a los principios éticos de **AIDE FRANCE**:
+Este código de conducta se suma a los principios éticos de **Diabolic_France**:
 
 🛡️ *"L'union fait la force"* - *"Un gran poder conlleva una gran responsabilidad"*
 
@@ -23,7 +23,7 @@ Por ello, cualquier contribución debe respetar la filosofía de **OSINT ético*
 * Dar y aceptar críticas constructivas de forma educada.
 * Aceptar la responsabilidad por los errores propios y aprender de ellos.
 * Centrarse en lo que es mejor no solo para el individuo, sino para toda la comunidad.
-* **Respetar la privacidad** – AIDE FRANCE solo trabaja con datos públicos de periódicos y asociaciones.
+* **Respetar la privacidad** – Diabolic_France solo trabaja con datos públicos de periódicos y asociaciones.
 * **Uso ético** – La herramienta está diseñada para ayudar a personas en situación de precariedad, no para estigmatizar.
 * **Transparencia** – Todo el código es abierto y verificable.
 
@@ -33,7 +33,7 @@ Por ello, cualquier contribución debe respetar la filosofía de **OSINT ético*
 * Comentarios insultantes o despectivos, ataques personales o políticos.
 * Acoso público o privado.
 * Publicar información privada de otras personas sin su permiso explícito.
-* **Usar AIDE FRANCE para:** vigilar a colectivos vulnerables, discriminar por situación social, acosar a beneficiarios de ayudas, o cualquier fin que no sea la ayuda social.
+* **Usar Diabolic_France para:** vigilar a colectivos vulnerables, discriminar por situación social, acosar a beneficiarios de ayudas, o cualquier fin que no sea la ayuda social.
 * **Modificar el código para:** recopilar datos personales, identificar individuos, o realizar vigilancia masiva.
 
 ---
@@ -99,9 +99,9 @@ Este Código de Conducta está adaptado del [Contributor Covenant][homepage], ve
 
 ### Notre engagement
 
-Dans le but de favoriser un environnement ouvert et accueillant, nous, en tant que contributeurs et mainteneurs de **AIDE FRANCE**, nous engageons à faire de la participation à notre projet et à notre communauté une expérience sans harcèlement pour tous, indépendamment de l'âge, de la taille, du handicap visible ou invisible, de l'origine ethnique, des caractéristiques sexuelles, de l'identité et de l'expression de genre, du niveau d'expérience, de l'éducation, de la situation socio-économique, de la nationalité, de l'apparence personnelle, de la race, de la religion ou de l'identité et de l'orientation sexuelle.
+Dans le but de favoriser un environnement ouvert et accueillant, nous, en tant que contributeurs et mainteneurs de **Diabolic_France**, nous engageons à faire de la participation à notre projet et à notre communauté une expérience sans harcèlement pour tous, indépendamment de l'âge, de la taille, du handicap visible ou invisible, de l'origine ethnique, des caractéristiques sexuelles, de l'identité et de l'expression de genre, du niveau d'expérience, de l'éducation, de la situation socio-économique, de la nationalité, de l'apparence personnelle, de la race, de la religion ou de l'identité et de l'orientation sexuelle.
 
-Ce code de conduite s'ajoute aux principes éthiques d'**AIDE FRANCE** :
+Ce code de conduite s'ajoute aux principes éthiques d'**Diabolic_France** :
 
 🛡️ *"L'union fait la force"* - *"Un grand pouvoir implique de grandes responsabilités"*
 
@@ -115,12 +115,12 @@ Ce code de conduite s'ajoute aux principes éthiques d'**AIDE FRANCE** :
 * Respecter les opinions et expériences différentes
 * Donner et accepter les critiques constructives
 * Assumer la responsabilité de ses erreurs
-* **Respecter la vie privée** – AIDE FRANCE ne traite que des données publiques
+* **Respecter la vie privée** – Diabolic_France ne traite que des données publiques
 * **Usage éthique** – L'outil est conçu pour aider, pas pour stigmatiser
 
 **Comportement inacceptable :**
 
-* Utiliser AIDE FRANCE pour surveiller des personnes vulnérables
+* Utiliser Diabolic_France pour surveiller des personnes vulnérables
 * Discriminer en fonction de la situation sociale
 * Harceler les bénéficiaires d'aides sociales
 * Recueillir des données personnelles
@@ -148,9 +148,9 @@ Ce code de conduite s'ajoute aux principes éthiques d'**AIDE FRANCE** :
 
 ### Il nostro impegno
 
-Con l'obiettivo di favorire un ambiente aperto e accogliente, noi, come contributor e manutentori di **AIDE FRANCE**, ci impegniamo a rendere la partecipazione al nostro progetto e alla nostra comunità un'esperienza libera da molestie per tutti, indipendentemente da età, corporatura, disabilità visibile o invisibile, etnia, caratteristiche sessuali, identità ed espressione di genere, livello di esperienza, istruzione, situazione socioeconomica, nazionalità, aspetto personale, razza, religione o identità e orientamento sessuale.
+Con l'obiettivo di favorire un ambiente aperto e accogliente, noi, come contributor e manutentori di **Diabolic_France**, ci impegniamo a rendere la partecipazione al nostro progetto e alla nostra comunità un'esperienza libera da molestie per tutti, indipendentemente da età, corporatura, disabilità visibile o invisibile, etnia, caratteristiche sessuali, identità ed espressione di genere, livello di esperienza, istruzione, situazione socioeconomica, nazionalità, aspetto personale, razza, religione o identità e orientamento sessuale.
 
-Questo codice di condotta si aggiunge ai principi etici di **AIDE FRANCE** :
+Questo codice di condotta si aggiunge ai principi etici di **Diabolic_France** :
 
 🛡️ *"L'unione fa la forza"* - *"Da un grande potere derivano grandi responsabilità"*
 
@@ -163,12 +163,12 @@ Questo codice di condotta si aggiunge ai principi etici di **AIDE FRANCE** :
 * Mostrare empatia e gentilezza
 * Rispettare opinioni ed esperienze diverse
 * Dare e accettare critiche costruttive
-* **Rispettare la privacy** – AIDE FRANCE lavora solo con dati pubblici
+* **Rispettare la privacy** – Diabolic_France lavora solo con dati pubblici
 * **Uso etico** – Lo strumento è progettato per aiutare, non per stigmatizzare
 
 **Comportamento inaccettabile :**
 
-* Utilizzare AIDE FRANCE per sorvegliare persone vulnerabili
+* Utilizzare Diabolic_France per sorvegliare persone vulnerabili
 * Discriminare in base alla situazione sociale
 * Molestare i beneficiari di aiuti sociali
 * Raccogliere dati personali
