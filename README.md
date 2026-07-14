@@ -1,5 +1,3 @@
-![Logo](Diabolic_France_Logo.png)
-
 <p align="center">
   <!-- Version Badges -->
   <img src="https://img.shields.io/badge/version-3.0-red?style=for-the-badge&logo=github">
@@ -90,6 +88,8 @@
 <p align="center">
   <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=24&duration=3000&pause=500&color=FF0000&center=true&vCenter=true&width=600&lines=Surveiller+pour+protéger;Drogue+%7C+Gangs+%7C+Criminalité+organisée;101+départements+%7C+55%2B+sources">
 </p>
+
+![Logo](Diabolic_France_Logo.png)
 
 <p align="center">
   <b>🔪 Surveillance en temps réel : Trafic de drogue · Violence des gangs · Criminalité organisée · Terrorisme</b><br>
