@@ -618,3 +618,5 @@ Si ce projet vous a été utile, pensez à lui donner une ⭐ sur GitHub.
 | **Palabras clave** | logement, emploi, solidarité | drogue, gangs, terrorisme |
 | **Nombre del proyecto** | aide_france | diabolic_france |
 | **Archivos** | aide_france_*.json | diabolic_france_*.json |
+
+ 🦅 Condor2026 - Threat Security - 🦅
