@@ -130,6 +130,8 @@
 
 DIABOLIC FRANCE est une plateforme d'intelligence criminelle open source conçue pour la France. Elle analyse en temps réel des médias français et des sources officielles pour détecter, classifier et géolocaliser les activités criminelles, les conflits de rue et la cybercriminalité.
 
+![TheCondor](terminal.png)
+
 | # | Action | Description |
 |---|--------|-------------|
 | 1 | **Scanne** | 55+ médias français + 8 sources officielles |
@@ -142,6 +144,8 @@ DIABOLIC FRANCE est une plateforme d'intelligence criminelle open source conçue
 | 8 | **Cartographie** | Carte 2D multi-couches (Carto, OSM, satellite, chaleur, clusters) |
 | 9 | **Exporte** | JSON, CSV, HTML, GeoJSON |
 | 10 | **Multilingue** | FR · ES · EN · IT · DE |
+
+![TheCondor](terminal2.png)
 
 ---
 
