@@ -1,77 +1,151 @@
-# ============================================
-# DIABOLIC FRANCE - Docker Compose
-# Plateforme de renseignement criminel française
-# ============================================
+# =============================================================================
+# DIABOLIC FRANCE v3.0 — docker-compose.yml
+# By Condor2026 · SpectrumSecurity · GPL-3.0-or-later
+# =============================================================================
+# Usage :
+#   docker compose up -d           # démarrer
+#   docker compose logs -f         # suivre les logs
+#   docker compose down            # arrêter
+#   docker compose down -v         # arrêter + supprimer volumes (⚠️ perte de données)
+# =============================================================================
 
-version: '3.8'
+name: diabolic-france
 
 services:
   diabolic-france:
-    build: .
-    container_name: diabolic_france
+    # -------------------------------------------------------------------------
+    # Image
+    # -------------------------------------------------------------------------
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PYTHON_VERSION: "3.11"
+        APP_UID: "1000"
+        APP_GID: "1000"
+    image: diabolic-france:3.0
+    container_name: diabolic-france
+    hostname: diabolic-france
+
+    # -------------------------------------------------------------------------
+    # Redémarrage
+    # -------------------------------------------------------------------------
     restart: unless-stopped
+
+    # -------------------------------------------------------------------------
+    # Ports
+    # 127.0.0.1 = accessible uniquement depuis l'hôte (sécurité par défaut).
+    # Pour exposer sur le LAN, remplacez par "5016:5016" — ⚠️ consultez
+    # LEGAL_ETHICAL_NOTICE.md et DISCLAIMER.md avant d'exposer publiquement.
+    # -------------------------------------------------------------------------
     ports:
-      - "5016:5016"
-    volumes:
-      - diabolic_france-data:/app/data
-      - diabolic_france-exports:/app/exports
+      - "127.0.0.1:5016:5016"
+
+    # -------------------------------------------------------------------------
+    # Variables d'environnement
+    # Aucun secret ici : tout est configurable via .env (voir .env.example)
+    # -------------------------------------------------------------------------
     environment:
-      - PYTHONUNBUFFERED=1
-      - PORT=5016
-      - LANG=fr_FR.UTF-8
-      - LC_ALL=fr_FR.UTF-8
+      TZ: "Europe/Paris"
+      PYTHONUNBUFFERED: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONIOENCODING: "utf-8"
+      # Bind interne Flask — 0.0.0.0 obligatoire pour être joignable depuis l'hôte
+      DF_HOST: "0.0.0.0"
+      DF_PORT: "5016"
+      # Langue par défaut (fr|es|en|it|de)
+      DF_LANG: "${DF_LANG:-fr}"
+      # Sensibilité du filtre (amplio|equilibrado|estricto)
+      DF_SENS: "${DF_SENS:-equilibrado}"
+      # Scan automatique toutes les N minutes (0 = désactivé)
+      DF_AUTO: "${DF_AUTO:-0}"
+      # Respecter robots.txt (true|false) — false par défaut comme la v1
+      DF_ROBOTS: "${DF_ROBOTS:-false}"
+      # Pages par source (1-8)
+      DF_PAGES: "${DF_PAGES:-3}"
+      # Seuil de sévérité pour l'alarme (5-9)
+      DF_ALARM_THRESHOLD: "${DF_ALARM_THRESHOLD:-6}"
+
+    # -------------------------------------------------------------------------
+    # Volumes — persistance des données locales
+    # -------------------------------------------------------------------------
+    volumes:
+      - diabolic-data:/app/data
+      - diabolic-logs:/app/logs
+      - diabolic-exports:/app/exports
+      - diabolic-graphs:/app/graficos_estaticos
+      # Montez votre fichier .env si vous préférez ne pas utiliser les variables
+      # d'environnement : - ./.env:/app/.env:ro
+
+    # -------------------------------------------------------------------------
+    # Sécurité du conteneur
+    # -------------------------------------------------------------------------
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    read_only: false
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    # Non-root (l'utilisateur est créé dans le Dockerfile)
+    user: "1000:1000"
+
+    # -------------------------------------------------------------------------
+    # Healthcheck
+    # -------------------------------------------------------------------------
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5016"]
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:5016/api/status', timeout=5).status == 200 else 1)"]
       interval: 30s
       timeout: 10s
       retries: 3
-      start_period: 40s
-    networks:
-      - diabolic-network
+      start_period: 45s
 
-  # Opcional: servicio de backup automático
-  diabolic-backup:
-    image: alpine:latest
-    container_name: diabolic_backup
-    volumes:
-      - diabolic_france-data:/data:ro
-      - ./backups:/backups
-    command: |
-      sh -c "
-      while true; do
-        tar -czf /backups/diabolic_france-backup-$(date +%Y%m%d-%H%M%S).tar.gz /data/ 2>/dev/null || true
-        find /backups -name '*.tar.gz' -mtime +7 -delete
-        sleep 86400
-      done
-      "
-    restart: unless-stopped
-    networks:
-      - diabolic-network
+    # -------------------------------------------------------------------------
+    # Logs (rotation pour éviter la saturation disque)
+    # -------------------------------------------------------------------------
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
 
+    # -------------------------------------------------------------------------
+    # Limites de ressources (adaptez à votre machine)
+    # -------------------------------------------------------------------------
+    deploy:
+      resources:
+        limits:
+          cpus: "1.5"
+          memory: 1G
+        reservations:
+          cpus: "0.25"
+          memory: 256M
+
+    # -------------------------------------------------------------------------
+    # Réseau
+    # -------------------------------------------------------------------------
+    networks:
+      - df-net
+
+# =============================================================================
+# Volumes nommés
+# =============================================================================
 volumes:
-  diabolic_france-data:
-    driver: local
-  diabolic_france-exports:
-    driver: local
+  diabolic-data:
+    name: diabolic-france-data
+  diabolic-logs:
+    name: diabolic-france-logs
+  diabolic-exports:
+    name: diabolic-france-exports
+  diabolic-graphs:
+    name: diabolic-france-graphs
 
+# =============================================================================
+# Réseau isolé (pas d'accès sortant bloqué : le scraping en a besoin)
+# =============================================================================
 networks:
-  diabolic-network:
+  df-net:
+    name: diabolic-france-net
     driver: bridge
-```
-
----
-
-## ✅ RESUMEN DE CAMBIOS
-
-| Elemento | Antes (AIDE FRANCE) | Ahora (DIABOLIC FRANCE) |
-|----------|---------------------|--------------------------|
-| **Nombre del servicio** | `aide-france` | `diabolic-france` |
-| **Container name** | `aide_france` | `diabolic_france` |
-| **Puerto** | `5015:5015` | `5016:5016` |
-| **Volumen de datos** | `aide-france-data` | `diabolic_france-data` |
-| **Volumen de exports** | `aide-france-exports` | `diabolic_france-exports` |
-| **Red** | `aide-network` | `diabolic-network` |
-| **Servicio backup** | `aide-backup` | `diabolic-backup` |
-| **Container backup** | `aide_backup` | `diabolic_backup` |
-| **Nombre backup** | `aide-france-backup-*.tar.gz` | `diabolic_france-backup-*.tar.gz` |
-| **Descripción** | "Plateforme d'entraide sociale française" | "Plateforme de renseignement criminel française" |
+    # Pas de réseau interne : le conteneur doit pouvoir sortir pour scraper.
+    # Le trafic entrant reste limité au port 5016 mappé sur 127.0.0.1.
