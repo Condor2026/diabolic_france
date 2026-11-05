@@ -1,12 +1,16 @@
+# =============================================================================
+# DIABOLIC FRANCE v3.0 — .gitignore
+# By Condor2026 · SpectrumSecurity
+# =============================================================================
+
+# -----------------------------------------------------------------------------
 # Python
+# -----------------------------------------------------------------------------
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
 .Python
-env/
-venv/
-ENV/
 build/
 develop-eggs/
 dist/
@@ -19,35 +23,168 @@ parts/
 sdist/
 var/
 wheels/
+share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
 
-# Datos generados por DIABOLIC FRANCE
-diabolic_france_data.json
+# -----------------------------------------------------------------------------
+# Environnements virtuels
+# -----------------------------------------------------------------------------
+.venv/
+venv/
+ENV/
+env/
+.python-version
+pyvenv.cfg
+
+# -----------------------------------------------------------------------------
+# Packaging / distribution
+# -----------------------------------------------------------------------------
+*.whl
+*.tar.gz
+*.zip
+*.rar
+*.7z
+
+# -----------------------------------------------------------------------------
+# Données locales générées par DIABOLIC FRANCE
+# (ne jamais versionner : contient les événements scrapés, l'état des sources,
+#  le cache d'URL et les journaux)
+# -----------------------------------------------------------------------------
+diabolic_france.json
 diabolic_france_backup.json
-url_cache_diabolic_france.json
-etat_sources_diabolic_france.json
+diabolic_france.json.tmp
 diabolic_france.log
+diabolic_france.log.*
+url_cache_crime.json
+url_cache_crime.json.tmp
+estado_fuentes_crime.json
+estado_fuentes_crime.json.tmp
 
-# Exportaciones
-diabolic_france_export.json
-diabolic_france_export.csv
+# Exports générés (JSON / CSV / HTML / GeoJSON)
+diabolic_export.*
+diabolic_france_export.*
 diabolic_france_report.html
+exports/
+export/
+*.geojson
 
-# Archivos temporales
+# Graphiques statiques générés
+graficos_estaticos/
+graficos_estaticos/**
+*.png
+!Diabolic_France_Logo.png
+
+# -----------------------------------------------------------------------------
+# Journaux / logs
+# -----------------------------------------------------------------------------
 *.log
-*.tmp
-.DS_Store
-Thumbs.db
+*.log.*
+logs/
+log/
+
+# -----------------------------------------------------------------------------
+# Fichiers de configuration locaux
+# -----------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+*.local
+config.local.*
+settings.local.*
+
+# -----------------------------------------------------------------------------
+# Bases de données locales (si SQLite / DuckDB ajoutés plus tard)
+# -----------------------------------------------------------------------------
+*.sqlite
+*.sqlite3
+*.db
+*.duckdb
+
+# -----------------------------------------------------------------------------
+# IDE / éditeurs
+# -----------------------------------------------------------------------------
+.vscode/
+.vscode/**
+!.vscode/extensions.json
+!.vscode/settings.example.json
+.idea/
+.idea/**
+*.iml
+*.sublime-project
+*.sublime-workspace
 *.swp
 *.swo
+*~
+.project
+.classpath
+.settings/
 
-# Variables de entorno
-.env
-.env.local
+# -----------------------------------------------------------------------------
+# OS
+# -----------------------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
 
-# IDE
-.vscode/
-.idea/
-*.sublime-*
+# -----------------------------------------------------------------------------
+# Tests / coverage
+# -----------------------------------------------------------------------------
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+tox.ini
+.tox/
+.nox/
+coverage.xml
+*.cover
+.hypothesis/
+
+# -----------------------------------------------------------------------------
+# MyPy / Ruff / Black / isort
+# -----------------------------------------------------------------------------
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.ruff_cache/
+.cache/
+.ipynb_checkpoints/
+
+# -----------------------------------------------------------------------------
+# Docker
+# -----------------------------------------------------------------------------
+docker-compose.override.yml
+.docker/
+*.pid
+
+# -----------------------------------------------------------------------------
+# Sécurité — ne jamais committer
+# -----------------------------------------------------------------------------
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+secrets/
+credentials/
+*.secret
+*.token
+
+# -----------------------------------------------------------------------------
+# Divers
+# -----------------------------------------------------------------------------
+*.bak
+*.orig
+*.rej
+*.tmp
+*.temp
+.cache/
