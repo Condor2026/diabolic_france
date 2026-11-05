@@ -14,7 +14,7 @@
 ║  🔗 Fusion multi-sources (une info = plusieurs sources confirmées)            ║
 ║  🚨 Conflits de rue + alarme sonore (armer/couper/test) + alertes officielles ║
 ║  📈 Indicateurs façon crypto (RSI, SMA, Bollinger, indice de menace)          ║
-║  🗺️  Carte 2D: Carto sombre · plan réel OSM · satellite · chaleur · clusters  ║
+║  🗺️  Carte 2D: Carto sombre · plan réel OSM · satellite · chaleur · clusters   ║
 ║  🌍 5 langues: FR · ES · EN · IT · DE        🖥️  Panneau holographique        ║
 ║                                                                               ║
 ║  🛡️ "L'union fait la force" - Devise française                                ║
@@ -3191,6 +3191,8 @@ footer{text-align:center;color:#4d6285;font-size:.78em;padding:26px;letter-spaci
 #zoomOv .zb{flex:1;min-height:0;overflow:auto}#zoomOv .zb .cv{height:100%!important}#zoomOv .zb #net{height:100%!important}
 #zoomOv .zb img{display:block;width:auto;max-width:100%;max-height:100%;margin:0 auto;cursor:default}
 body.zooming{overflow:hidden}
+.leaflet-tooltip.ptip{background:rgba(5,11,24,.96);color:#d7e6ff;border:1px solid var(--cy);border-radius:8px;box-shadow:0 0 18px rgba(0,229,255,.35);max-width:300px;white-space:normal;padding:7px 10px;font:13px Rajdhani,sans-serif;line-height:1.35}
+.leaflet-tooltip.ptip small{color:#8aa0c4}.leaflet-tooltip-top.ptip:before{border-top-color:var(--cy)}
 </style>
 </head>
 <body>
@@ -3443,6 +3445,14 @@ function popup(p){const u=safeUrl(p[8]),col=CATC[p[10]]||'#888';
   return `<b>${ticon(p[4])} ${esc(tname(p[4]))}</b> <span style="color:${col}">· ${esc(catName(p[10]))}</span><br>${u?`<a href="${esc(u)}" target="_blank" rel="noopener noreferrer">${esc(p[5])}</a>`:esc(p[5])}<br>
   <small>${esc(p[7])} · ${esc(p[6])} · ${esc(T('severity'))} ${p[2]}/10</small><div class="relbar" title="${esc(T('relevance'))}"><i style="width:${p[11]}%"></i></div>
   <small>${esc(T('relevance'))} ${p[11]}% · ${esc(T('confirmed_by'))} ${p[12]}</small><div class="srcs" style="margin-top:4px">${srcChips(p[13])}</div>`;}
+const cut=(t,n)=>{t=String(t||'');return t.length>n?t.slice(0,n-1)+'…':t;};
+function tip(p){const col=CATC[p[10]]||'#888';
+  return `<b>${ticon(p[4])} ${esc(tname(p[4]))}</b> <span style="color:${col}">· ${esc(catName(p[10]))}</span><br>${esc(cut(p[5],120))}<br>
+  <small>📍 ${esc(p[7])} · ${esc(p[6])}<br>${esc(T('severity'))} ${p[2]}/10 · ${esc(T('relevance'))} ${p[11]}% · ${esc(T('confirmed_by'))} ${p[12]}</small>`;}
+function clusterTip(l){const ms=l.getAllChildMarkers(),c={};let mx=0;
+  ms.forEach(m=>{const p=m._p;if(!p)return;c[p[4]]=(c[p[4]]||0)+1;mx=Math.max(mx,p[2]);});
+  const top=Object.entries(c).sort((a,b)=>b[1]-a[1]).slice(0,5).map(([t,n])=>`${ticon(t)} ${esc(tname(t))} <b>×${n}</b>`).join('<br>');
+  return `<b>Σ ${ms.length}</b> · ${esc(T('severity'))} max ${mx}/10<br>${top}`;}
 function initMap(){
   MAP=L.map('map',{preferCanvas:true}).setView([46.6,2.4],6);
   const mkT=(u,o)=>L.tileLayer(u,Object.assign({maxZoom:19,attribution:'© OpenStreetMap contributors'},o||{}));
@@ -3463,10 +3473,11 @@ async function renderMap(){
   HEAT=L.heatLayer(PTS.map(p=>[p[0],p[1],Math.max(.15,p[2]/10)]),{radius:22,blur:20,minOpacity:.3,gradient:{.2:'#2f6bff',.45:'#00e5ff',.65:'#ffb800',.85:'#ff2d55',1:'#fff'}});
   LAYERS[T('m_heat')]=HEAT;
   const cl=L.markerClusterGroup({showCoverageOnHover:false,maxClusterRadius:45,chunkedLoading:true});
-  PTS.forEach(p=>cl.addLayer(L.circleMarker([p[0],p[1]],{radius:5+p[2]*.45,color:'#03050c',weight:1,fillColor:tcol(p[4]),fillOpacity:.9}).bindPopup(popup(p))));
+  PTS.forEach(p=>{const mk=L.circleMarker([p[0],p[1]],{radius:5+p[2]*.45,color:'#03050c',weight:1,fillColor:tcol(p[4]),fillOpacity:.9}).bindPopup(popup(p)).bindTooltip(tip(p),{sticky:true,direction:'top',className:'ptip',opacity:1});mk._p=p;cl.addLayer(mk);});
+  cl.on('clustermouseover',a=>{const l=a.layer;l.unbindTooltip();l.bindTooltip(clusterTip(l),{direction:'top',className:'ptip',opacity:1}).openTooltip();});
   LAYERS[T('m_clusters')]=cl;
   const rue=PTS.filter(p=>p[10]==='rue').slice(0,160);
-  LAYERS[T('m_pulse')]=L.layerGroup(rue.map(p=>L.marker([p[0],p[1]],{icon:L.divIcon({className:'pulse'+(p[2]>=(CFG.umbral||6)?' hi':''),html:'<i></i>',iconSize:[18,18]})}).bindPopup(popup(p))));
+  LAYERS[T('m_pulse')]=L.layerGroup(rue.map(p=>L.marker([p[0],p[1]],{icon:L.divIcon({className:'pulse'+(p[2]>=(CFG.umbral||6)?' hi':''),html:'<i></i>',iconSize:[18,18]})}).bindPopup(popup(p)).bindTooltip(tip(p),{direction:'top',offset:[0,-10],className:'ptip',opacity:1})));
   LAYERS[T('m_hot')]=L.layerGroup(g.hotspots.map(h=>L.circle([h.lat,h.lon],{radius:15000+h.count*3500,color:RD,weight:1.5,fillColor:RD,fillOpacity:.12,dashArray:'4 4'}).bindTooltip(`🔥 ${esc(h.label)} · ${h.count} · ${h.sev}/10`)));
   if(GEOJ===null){try{GEOJ=await (await fetch('https://raw.githubusercontent.com/gregoiredavid/france-geojson/master/departements-version-simplifiee.geojson')).json();}catch(e){GEOJ=false;}}
   if(GEOJ){const mx=Math.max(1,...Object.values(g.dept_counts));
