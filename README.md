@@ -314,6 +314,7 @@ Ouvrir : **http://localhost:5016**
 ---
 
 ## Dashboard web — `http://localhost:5016`
+
 ![TheCondor](panel.png)
 
 ### Onglets
@@ -355,7 +356,9 @@ Ouvrir : **http://localhost:5016**
 ---
 
 ## Alarme & conflits de rue
+
 ![TheCondor](panelALARM.png)
+
 Panneau dédié (bouton `🚨 Alarme`) :
 
 - **Armer / Désarmer** la sirène
@@ -413,6 +416,7 @@ Le bouton **VIGIPIRATE** permet de saisir manuellement le niveau en vigueur :
 Le **ticker** en haut du panneau affiche en continu : indice de menace, total 7j, physique/rue/cyber, top types, RSI, sévérité moyenne — avec delta % et sparkline 14j.
 
 ---
+
 ![TheCondor](panel2.png)
 
 ## Classification — comment un article devient un événement
@@ -488,6 +492,7 @@ Deux événements sont fusionnés si :
 | 🕷️ | Piratage / Cyberattaque | 5 |
 
 ---
+
 ![TheCondor](panel3.png)
 
 ## API REST
