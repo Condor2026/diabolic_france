@@ -1,40 +1,37 @@
-# ============================================
-# DIABOLIC FRANCE v3.0 - DÉPENDANCES
-# Plateforme de renseignement criminel française
-# ============================================
+# =============================================================================
+# DIABOLIC FRANCE v3.0 — requirements.txt
+# By Condor2026 · SpectrumSecurity · GPL-3.0-or-later
+# =============================================================================
+# Installation :
+#   pip install -r requirements.txt
+#
+# Dépendances optionnelles (graphiques statiques PNG) :
+#   pip install matplotlib networkx
+#
+# Python requis : >= 3.8 (recommandé : 3.11+)
+# =============================================================================
 
-# HTTP requests et scraping / scraping y peticiones
-requests==2.32.3
-beautifulsoup4==4.12.3
-lxml==5.3.0
-urllib3==2.2.2
+# -----------------------------------------------------------------------------
+# Dépendances obligatoires (core)
+# -----------------------------------------------------------------------------
 
-# Web framework (dashboard avec pagination)
-flask==3.0.3
+# Framework web — panneau, API REST, SSE
+flask>=3.0,<4.0
 
-# Utilitaires / Utilidades
-python-dotenv==1.0.1
+# HTTP client — scraping, auto-discovery, sources officielles
+requests>=2.31,<3.0
 
-# Opcional: amélioration des performances (futur)
-# aiohttp==3.10.0  # Décommenter pour async (future version)
+# Parser HTML — extraction des articles
+beautifulsoup4>=4.12,<5.0
 
-# ============================================
-# 🔪 DIABOLIC FRANCE - Crime intelligence pour la France
-# Installation: pip install -r requirements.txt
-# ============================================
-```
-
----
-
-## ✅ CAMBIOS REALIZADOS
-
-| Elemento | Antes (AIDE FRANCE) | Ahora (DIABOLIC FRANCE) |
-|----------|---------------------|--------------------------|
-| **Nombre** | AIDE FRANCE v1.0 | DIABOLIC FRANCE v3.0 |
-| **Descripción** | Plateforme d'entraide sociale française | Plateforme de renseignement criminel française |
-| **requests** | 2.31.0 → 2.32.3 | Versión más reciente |
-| **lxml** | 5.1.0 → 5.3.0 | Versión más reciente |
-| **urllib3** | 2.2.1 → 2.2.2 | Versión más reciente |
-| **aiohttp** | 3.9.5 → 3.10.0 | Versión más reciente (comentado) |
-| **Icono** | 🇫🇷 | 🔪 |
-| **Línea final** | Aide sociale | Crime intelligence |
+# -----------------------------------------------------------------------------
+# Dépendances optionnelles (graphiques statiques PNG)
+# -----------------------------------------------------------------------------
+# Décommenter OU installer via :
+#   pip install matplotlib networkx
+#
+# Sans ces paquets, le projet fonctionne normalement ; seuls les endpoints
+# /graph/{kind}.png et le menu option 14 sont indisponibles (HTTP 501).
+#
+# matplotlib>=3.7,<4.0
+# networkx>=3.0,<4.0
