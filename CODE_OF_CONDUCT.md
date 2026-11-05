@@ -1,213 +1,179 @@
-# 📜 Código de Conducta / Code de Conduite / Codice di Condotta
+# Code of Conduct — DIABOLIC FRANCE
 
-## 🇪🇸 Español
-
-### Nuestro compromiso
-
-Con el objetivo de fomentar un entorno abierto y acogedor, nosotros, como contribuyentes y mantenedores de **Diabolic_France**, nos comprometemos a hacer que la participación en nuestro proyecto y en nuestra comunidad sea una experiencia libre de acoso para todas las personas, independientemente de su edad, dimensión corporal, discapacidad visible o invisible, etnia, características sexuales, identidad y expresión de género, nivel de experiencia, educación, situación socioeconómica, nacionalidad, apariencia personal, raza, religión o identidad y orientación sexual.
-
-Este código de conducta se suma a los principios éticos de **Diabolic_France**:
-
-🛡️ *"L'union fait la force"* - *"Un gran poder conlleva una gran responsabilidad"*
-
-Por ello, cualquier contribución debe respetar la filosofía de **OSINT ético**, **cero datos personales**, **transparencia total** y **solidaridad**.
+**Version 1.0 · Adapté du Contributor Covenant v2.1**
 
 ---
 
-### Nuestros estándares
+## Notre engagement
 
-**Comportamiento ejemplar:**
+En tant que membres, contributeurs et responsables de **DIABOLIC FRANCE**, nous nous engageons à faire de la participation à notre projet et à notre communauté une expérience exempte de harcèlement, de discrimination et d'abus, pour tout le monde — quel que soit l'âge, la taille, le handicap visible ou invisible, l'origine ethnique, les caractéristiques sexuelles, l'identité et l'expression de genre, le niveau d'expérience, l'éducation, le statut socio-économique, la nationalité, l'apparence personnelle, la race, la religion, ou l'orientation sexuelle.
 
-* Demostrar empatía y amabilidad ante otras personas.
-* Respetar las opiniones, puntos de vista y experiencias diferentes.
-* Dar y aceptar críticas constructivas de forma educada.
-* Aceptar la responsabilidad por los errores propios y aprender de ellos.
-* Centrarse en lo que es mejor no solo para el individuo, sino para toda la comunidad.
-* **Respetar la privacidad** – Diabolic_France solo trabaja con datos públicos de periódicos y asociaciones.
-* **Uso ético** – La herramienta está diseñada para ayudar a personas en situación de precariedad, no para estigmatizar.
-* **Transparencia** – Todo el código es abierto y verificable.
-
-**Comportamiento inaceptable:**
-
-* El uso de lenguaje o imágenes sexuales, y la atención o avances sexuales no deseados.
-* Comentarios insultantes o despectivos, ataques personales o políticos.
-* Acoso público o privado.
-* Publicar información privada de otras personas sin su permiso explícito.
-* **Usar Diabolic_France para:** vigilar a colectivos vulnerables, discriminar por situación social, acosar a beneficiarios de ayudas, o cualquier fin que no sea la ayuda social.
-* **Modificar el código para:** recopilar datos personales, identificar individuos, o realizar vigilancia masiva.
+Nous nous engageons à agir et interagir de manière à contribuer à une communauté ouverte, accueillante, diversifiée, inclusive et saine — **dans le strict respect du cadre légal et éthique** décrit dans [LEGAL_ETHICAL_NOTICE.md](LEGAL_ETHICAL_NOTICE.md) et [DISCLAIMER.md](DISCLAIMER.md).
 
 ---
 
-### Responsabilidades de los mantenedores
+## ⚠️ Spécificité OSINT — engagement éthique renforcé
 
-Los mantenedores del proyecto son responsables de aclarar y hacer cumplir nuestros estándares de comportamiento aceptable y tomarán las medidas correctivas apropiadas y justas en respuesta a cualquier comportamiento que consideren inapropiado, amenazante, ofensivo o dañino.
+DIABOLIC FRANCE traite de la **criminalité, du terrorisme et de la cybercriminalité**. Ce contexte impose une vigilance éthique particulière. Tout contributeur s'engage à :
 
-Los mantenedores tienen el derecho y la responsabilidad de eliminar, editar o rechazar comentarios, *commits*, código, ediciones de wiki, *issues* y otras contribuciones que no estén alineadas con este Código de Conducta.
+- **Ne jamais** utiliser le projet à des fins de surveillance de personnes, de doxxing, de harcèlement ou de discrimination.
+- **Ne jamais** contribuer de code, d'outils ou de sources visant à cibler des individus ou des communautés.
+- **Ne jamais** ajouter de sources non publiques, payantes contournées, ou nécessitant une authentification frauduleuse.
+- **Ne jamais** publier de données personnelles, de données sensibles, ni de contenu violent, gore ou illégal.
+- **Toujours** privilégier des sources journalistiques publiques et institutionnelles reconnues.
+- **Toujours** respecter les conditions d'utilisation des sites scrapés et les délais de politesse.
+- **Toujours** signaler immédiatement à l'équipe tout contenu ou contribution susceptible de porter atteinte à la dignité des victimes.
 
----
-
-### Alcance
-
-Este Código de Conducta aplica dentro de todos los espacios del proyecto (GitHub, *issues*, pull requests, debates) y también cuando una persona represente oficialmente al proyecto en espacios públicos.
-
----
-
-### Aplicación
-
-Se pueden reportar instancias de comportamiento abusivo, acosador o inaceptable a los mantenedores del proyecto a través de **GitHub Issues** (con etiqueta `code-of-conduct`) o mediante correo electrónico.
-
-Todas las quejas serán revisadas e investigadas de manera rápida y justa.
+Toute contribution contraire à ces principes sera **retirée sans délai** et pourra entraîner un **bannissement permanent**.
 
 ---
 
-### Directrices de aplicación
+## Nos standards
 
-| Nivel | Impacto | Consecuencia |
-|-------|---------|--------------|
-| **1. Corrección** | Lenguaje inapropiado | Advertencia privada por escrito |
-| **2. Advertencia** | Infracción por serie de acciones | Advertencia pública + restricción temporal |
-| **3. Expulsión temporal** | Violación grave sostenida | Expulsión por tiempo específico |
-| **4. Expulsión permanente** | Patrón de violación o acoso | Expulsión definitiva |
+### Exemples de comportements qui contribuent à un environnement positif
 
----
+- Faire preuve d'empathie et de bienveillance envers les autres.
+- Respecter les opinions, points de vue et expériences divergents.
+- Donner et accepter avec grâce des retours constructifs.
+- Assumer la responsabilité de ses erreurs, s'excuser auprès des personnes affectées, et apprendre de l'expérience.
+- Se concentrer sur ce qui est le mieux, non seulement pour nous en tant qu'individus, mais pour la communauté dans son ensemble.
+- **Respecter la dignité des victimes** citées dans les articles analysés : ne jamais commenter de manière railleuse, morbide ou voyeuriste.
+- **Citer ses sources** lorsqu'on rapporte un fait ou un comportement observé.
 
-### Uso legítimo de AIDE FRANCE
+### Exemples de comportements inacceptables
 
-✅ **Lo que SÍ puedes hacer:**
-- Detectar zonas con necesidades sociales urgentes
-- Informar a asociaciones para que actúen
-- Realizar estudios sociológicos agregados
-- Ayudar a ciudadanos a conocer sus derechos
-
-❌ **Lo que NO puedes hacer:**
-- Identificar o acosar a beneficiarios de ayudas
-- Discriminar por código postal o situación social
-- Vender los datos recopilados
-- Usar la herramienta para fines políticos partidistas
-
----
-
-### Atribución
-
-Este Código de Conducta está adaptado del [Contributor Covenant][homepage], versión 2.0.
-
-[homepage]: https://www.contributor-covenant.org
+- L'utilisation de langage ou d'imagerie sexualisés, et l'attention ou les avances sexuelles de toute nature.
+- Le trolling, les commentaires insultants ou désobligeants, et les attaques personnelles ou politiques.
+- Le harcèlement public ou privé, sous quelque forme que ce soit.
+- La publication d'informations privées d'autrui (adresse physique ou électronique, numéro de téléphone, etc.) sans leur autorisation explicite — **doxxing**.
+- La publication d'informations relatives à des victimes, suspects, mineurs ou personnes vulnérables au-delà de ce qui est déjà public dans les sources journalistiques.
+- Toute contribution visant à **surveiller, profiler ou cibler** des individus, des groupes ethniques, religieux, politiques ou sociaux.
+- Toute contribution visant à **contourner** les protections techniques, légales ou éthiques des sources (captcha, paywall, robots.txt quand activé, authentification).
+- Toute contribution à caractère **discriminatoire**, raciste, xénophobe, antisémite, islamophobe, homophobe, transphobe, validiste, sexiste ou autre.
+- Toute apologie ou banalisation du terrorisme, de la violence, de la pédocriminalité ou d'actes illégaux.
+- Toute autre conduite qui pourrait raisonnablement être considérée comme inappropriée dans un cadre professionnel et éthique.
 
 ---
 
-## 🇫🇷 Français
+## Responsabilités des mainteneurs
 
-### Notre engagement
+Les mainteneurs de DIABOLIC FRANCE sont responsables de clarifier et de faire respecter ces standards de comportement acceptable. Ils prendront des mesures correctives appropriées et équitables en réponse à tout comportement qu'ils jugent inapproprié, menaçant, offensant ou nuisible.
 
-Dans le but de favoriser un environnement ouvert et accueillant, nous, en tant que contributeurs et mainteneurs de **Diabolic_France**, nous engageons à faire de la participation à notre projet et à notre communauté une expérience sans harcèlement pour tous, indépendamment de l'âge, de la taille, du handicap visible ou invisible, de l'origine ethnique, des caractéristiques sexuelles, de l'identité et de l'expression de genre, du niveau d'expérience, de l'éducation, de la situation socio-économique, de la nationalité, de l'apparence personnelle, de la race, de la religion ou de l'identité et de l'orientation sexuelle.
+Les mainteneurs ont le droit et la responsabilité de :
 
-Ce code de conduite s'ajoute aux principes éthiques d'**Diabolic_France** :
-
-🛡️ *"L'union fait la force"* - *"Un grand pouvoir implique de grandes responsabilités"*
-
----
-
-### Nos standards
-
-**Comportement exemplaire :**
-
-* Faire preuve d'empathie et de bienveillance
-* Respecter les opinions et expériences différentes
-* Donner et accepter les critiques constructives
-* Assumer la responsabilité de ses erreurs
-* **Respecter la vie privée** – Diabolic_France ne traite que des données publiques
-* **Usage éthique** – L'outil est conçu pour aider, pas pour stigmatiser
-
-**Comportement inacceptable :**
-
-* Utiliser Diabolic_France pour surveiller des personnes vulnérables
-* Discriminer en fonction de la situation sociale
-* Harceler les bénéficiaires d'aides sociales
-* Recueillir des données personnelles
-* Vendre les données collectées
+- **Supprimer, modifier ou rejeter** les commentaires, commits, code, modifications du wiki, issues et autres contributions qui ne sont pas alignés sur ce Code de Conduite.
+- **Communiquer les raisons** des décisions de modération lorsque cela est approprié.
+- **Retirer temporairement ou définitivement** la contribution de tout contributeur pour des comportements qu'ils jugent inappropriés, menaçants, offensants ou nuisibles.
 
 ---
 
-### Utilisation légitime
+## Portée
 
-✅ **Ce que vous pouvez faire :**
-- Détecter les zones avec des besoins sociaux urgents
-- Informer les associations pour qu'elles agissent
-- Réaliser des études sociologiques agrégées
-- Aider les citoyens à connaître leurs droits
+Ce Code de Conduite s'applique dans **tous les espaces du projet** :
 
-❌ **Ce que vous ne pouvez pas faire :**
-- Identifier ou harceler les bénéficiaires d'aides
-- Discriminer par code postal
-- Vendre les données
-- Utiliser l'outil à des fins politiques partisanes
+- Le dépôt GitHub (`Condor2026/diabolic_france`) : issues, pull requests, discussions, wiki, releases.
+- Les canaux de communication associés (email, chat, réseaux sociaux officiels).
+- Les événements en personne ou en ligne organisés au nom du projet.
+
+Il s'applique également lorsqu'un individu **représente officiellement** le projet dans des espaces publics. Les exemples de représentation incluent l'utilisation d'une adresse email officielle du projet, la publication via un compte officiel sur les réseaux sociaux, ou le fait d'agir comme représentant désigné lors d'un événement en ligne ou hors ligne.
 
 ---
 
-## 🇮🇹 Italiano
+## Application
 
-### Il nostro impegno
+### Signaler un incident
 
-Con l'obiettivo di favorire un ambiente aperto e accogliente, noi, come contributor e manutentori di **Diabolic_France**, ci impegniamo a rendere la partecipazione al nostro progetto e alla nostra comunità un'esperienza libera da molestie per tutti, indipendentemente da età, corporatura, disabilità visibile o invisibile, etnia, caratteristiche sessuali, identità ed espressione di genere, livello di esperienza, istruzione, situazione socioeconomica, nazionalità, aspetto personale, razza, religione o identità e orientamento sessuale.
+Les cas de comportement abusif, harcelant, ou autrement inacceptable peuvent être signalés aux mainteneurs du projet à l'adresse :
 
-Questo codice di condotta si aggiunge ai principi etici di **Diabolic_France** :
+📧 **spectrumsecurity@proton.me**
 
-🛡️ *"L'unione fa la forza"* - *"Da un grande potere derivano grandi responsabilità"*
+Toutes les plaintes seront examinées et traitées rapidement et équitablement.
+
+**Tous les mainteneurs sont tenus de respecter la vie privée et la sécurité du déclarant d'un incident.**
+
+### Informations à inclure dans un signalement
+
+Pour faciliter le traitement, merci de fournir si possible :
+
+- La date et l'heure de l'incident.
+- Les personnes impliquées (pseudonymes GitHub si possible).
+- Une description factuelle des faits.
+- Les liens vers les messages, commits, issues ou captures d'écran pertinentes.
+- Le contexte éventuel (fil de discussion, événement, etc.).
+- Si vous souhaitez rester anonyme vis-à-vis de la personne mise en cause.
+
+### Processus de traitement
+
+1. **Accusé de réception** sous 72 h ouvrées.
+2. **Examen** de l'incident par au moins deux mainteneurs, en confidentialité.
+3. **Décision** motivée, notifiée au déclarant et à la personne mise en cause.
+4. **Application** de la sanction appropriée (voir ci-dessous).
+5. **Suivi** : possibilité de recours auprès d'un autre mainteneur si le déclarant estime la décision injuste.
+
+### Directives d'application
+
+Les mainteneurs suivront ces directives pour déterminer les conséquences de toute action qu'ils jugent en violation de ce Code de Conduite :
+
+#### 1. Correction
+
+**Impact communautaire** : utilisation d'un langage inapproprié ou d'un autre comportement jugé non professionnel ou malvenu.
+
+**Conséquence** : un avertissement écrit privé, avec explication de la nature du problème et des raisons pour lesquelles le comportement était inapproprié. Des excuses publiques peuvent être demandées.
+
+#### 2. Avertissement
+
+**Impact communautaire** : violation par un incident unique ou une série d'actions.
+
+**Conséquence** : un avertissement avec des conséquences en cas de comportement répété. Aucune interaction avec les personnes impliquées, y compris les interactions non sollicitées avec ceux qui appliquent le Code de Conduite, pendant une période déterminée. Cela inclut éviter les interactions dans les espaces communautaires ainsi que les canaux externes comme les réseaux sociaux. La violation de ces conditions peut entraîner un bannissement temporaire ou permanent.
+
+#### 3. Bannissement temporaire
+
+**Impact communautaire** : violation grave des standards communautaires, y compris un comportement inapproprié soutenu.
+
+**Conséquence** : un bannissement temporaire de toute interaction avec la communauté pendant une période déterminée. Aucune interaction publique ou privée avec les personnes impliquées, y compris les interactions non sollicitées avec ceux qui appliquent le Code de Conduite, n'est autorisée pendant cette période. La violation de ces conditions peut entraîner un bannissement permanent.
+
+#### 4. Bannissement permanent
+
+**Impact communautaire** : démonstration d'un schéma de violation des standards communautaires, y compris un comportement inapproprié soutenu, le harcèlement d'un individu, ou l'agression ou la dénigration de classes d'individus.
+
+**Conséquence** : un bannissement permanent de toute interaction publique au sein de la communauté. **Ce niveau s'applique automatiquement** à toute contribution visant à surveiller, profiler, cibler ou discriminer des individus ou des groupes (voir section OSINT ci-dessus).
 
 ---
 
-### I nostri standard
+## Attribution
 
-**Comportamento esemplare :**
+Ce Code de Conduite est adapté du [Contributor Covenant](https://www.contributor-covenant.org), version 2.1, disponible à l'adresse :
 
-* Mostrare empatia e gentilezza
-* Rispettare opinioni ed esperienze diverse
-* Dare e accettare critiche costruttive
-* **Rispettare la privacy** – Diabolic_France lavora solo con dati pubblici
-* **Uso etico** – Lo strumento è progettato per aiutare, non per stigmatizzare
+https://www.contributor-covenant.org/version/2/1/code_of_conduct.html
 
-**Comportamento inaccettabile :**
+Les Directives d'impact communautaire ont été inspirées par [l'échelle d'application du code de conduite de Mozilla](https://github.com/mozilla/diversity).
 
-* Utilizzare Diabolic_France per sorvegliare persone vulnerabili
-* Discriminare in base alla situazione sociale
-* Molestare i beneficiari di aiuti sociali
-* Raccogliere dati personali
-* Vendere i dati raccolti
+Pour les réponses aux questions fréquentes sur ce code de conduite, voir la FAQ à :
+
+https://www.contributor-covenant.org/faq
+
+Les traductions sont disponibles à :
+
+https://www.contributor-covenant.org/translations
 
 ---
 
-### Utilizzo legittimo
+## Contact
 
-✅ **Cosa puoi fare :**
-- Rilevare aree con bisogni sociali urgenti
-- Informare le associazioni per agire
-- Realizzare studi sociologici aggregati
-- Aiutare i cittadini a conoscere i propri diritti
-
-❌ **Cosa non puoi fare :**
-- Identificare o molestare i beneficiari di aiuti
-- Discriminare per codice postale
-- Vendere i dati
-- Utilizzare lo strumento per fini politici di parte
+| Rôle | Contact |
+|---|---|
+| **Mainteneur principal** | [@Condor2026](https://github.com/Condor2026) |
+| **Email** | SpectrumSecIty@proton.me |
+| **Projet** | [DIABOLIC FRANCE](https://github.com/Condor2026/diabolic_france) |
 
 ---
 
-## 📌 Información de contacto / Contact / Contatto
+## Licence
 
-Para reportar violaciones / Pour signaler des violations / Per segnalare violazioni:
-
-- **GitHub Issues**: etiqueta `code-of-conduct` / tag `code-of-conduite` / etichetta `code-of-conduct`
-- **Email**: conduct@aide-france.org (protegido / protégé / protetto)
+Ce Code de Conduite est publié sous licence [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 
 ---
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Code_of_Conduct-v1.0-red?style=flat-square">
-  <img src="https://img.shields.io/badge/Langues-3-blue?style=flat-square">
-  <img src="https://img.shields.io/badge/Éthique-OSINT-brightgreen?style=flat-square">
-</p>
-
-<p align="center">
-  <b>🛡️ "L'union fait la force" - Devise française</b><br>
-  <i>Solidarité · Transparence · Respect</i>
-</p>
+> **🔪 DIABOLIC FRANCE** — *Vigilamus pro tuendo*
+>
+> Nous surveillons pour protéger, **pas pour nuire**. Toute contribution doit respecter la dignité des personnes, le cadre légal et l'éthique OSINT.
