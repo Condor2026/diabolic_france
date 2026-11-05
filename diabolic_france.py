@@ -14,7 +14,7 @@
 ║  🔗 Fusion multi-sources (une info = plusieurs sources confirmées)            ║
 ║  🚨 Conflits de rue + alarme sonore (armer/couper/test) + alertes officielles ║
 ║  📈 Indicateurs façon crypto (RSI, SMA, Bollinger, indice de menace)          ║
-║  🗺️  Carte 2D: Carto sombre · plan réel OSM · satellite · chaleur · clusters   ║
+║  🗺️  Carte 2D: Carto sombre · plan réel OSM · satellite · chaleur · clusters  ║
 ║  🌍 5 langues: FR · ES · EN · IT · DE        🖥️  Panneau holographique        ║
 ║                                                                               ║
 ║  🛡️ "L'union fait la force" - Devise française                                ║
@@ -102,8 +102,8 @@ PAGINAS_BUSQUEDA = 3
 TIMEOUT = 25
 MAX_INTENTOS = 3              # v1 (vérification des sources)
 INTENTOS_ESCANEO = 2          # "deux essais et on passe à la source suivante"
-DELAY_MIN = 0.8               # v1
-DELAY_MAX = 2.0               # v1
+DELAY_MIN = 1.3               # v1 = 0.8 (un poco más lento para no ser bloqueado)
+DELAY_MAX = 3.2               # v1 = 2.0
 PRESUPUESTO_FUENTE = 90       # secondes max par source (aucune source ne bloque le scan)
 MAX_ELEMENTOS = 60            # v1 regardait 30 éléments par page
 RESPETAR_ROBOTS = False       # v1 ne lisait pas robots.txt (activable: --robots)
@@ -608,7 +608,7 @@ def robots_ok(url):
     return True if rp is None else rp.can_fetch('*', url)
 
 
-def _cortesia(host, minimo=0.35):
+def _cortesia(host, minimo=1.1):
     with _HOST_LOCK:
         now = time.time()
         wait = minimo - (now - _HOST_LAST.get(host, 0))
@@ -630,7 +630,9 @@ def fetch(url, intentos=MAX_INTENTOS, timeout=TIMEOUT):
     for _ in range(intentos):
         _cortesia(p.netloc)
         try:
-            headers = {'User-Agent': get_random_ua(), 'Accept-Language': 'fr-FR,fr;q=0.9'}   # idem v1
+            headers = {'User-Agent': get_random_ua(), 'Accept-Language': 'fr-FR,fr;q=0.9',                 # idem v1 + cabeceras de navegador
+                       'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                       'Referer': 'https://www.google.fr/', 'Upgrade-Insecure-Requests': '1', 'DNT': '1'}
             r = _session().get(url, timeout=timeout, headers=headers, allow_redirects=True)
             sc = r.status_code
             if sc == 200:
@@ -1202,28 +1204,71 @@ _FUENTES_RAW = [
 # presse cyber: (nombre, url, departement, rss|None)
 _FUENTES_CYBER_RAW = [
     ('ZATAZ', 'https://www.zataz.com/', 'National', 'https://www.zataz.com/feed/'),
-    ('LeMagIT - Sécurité', 'https://www.lemagit.fr/Securite', 'National', None),
-    ('Numerama - Cyberguerre', 'https://www.numerama.com/cyberguerre/', 'National', None),
-    ('Silicon.fr - Cybersécurité', 'https://www.silicon.fr/categorie/cybersecurite', 'National', None),
-    ('01net - Cybersécurité', 'https://www.01net.com/actualites/cybersecurite/', 'National', None),
+    ('LeMagIT - Sécurité', 'https://www.lemagit.fr/Securite', 'National', 'https://www.lemagit.fr/rss/ContentSyndication.xml'),
+    ('Numerama - Cyberguerre', 'https://www.numerama.com/cyberguerre/', 'National', 'https://www.numerama.com/cyberguerre/feed/'),
+    ('Silicon.fr - Cybersécurité', 'https://www.silicon.fr/categorie/cybersecurite', 'National', 'https://www.silicon.fr/categorie/cybersecurite/feed'),
+    ('01net - Cybersécurité', 'https://www.01net.com/actualites/cybersecurite/', 'National', 'https://www.01net.com/feed/'),
     ('Le Monde Informatique - Sécurité', 'https://www.lemondeinformatique.fr/securite.html', 'National', None),
     ('Next - Sécurité', 'https://next.ink/category/securite/', 'National', 'https://next.ink/feed/'),
-    ('France Info - Cybercriminalité', 'https://www.francetvinfo.fr/internet/securite-sur-internet/', 'National', None),
+    ('France Info - Cybercriminalité', 'https://www.francetvinfo.fr/internet/securite-sur-internet/', 'National', 'https://www.francetvinfo.fr/internet/securite-sur-internet.rss'),
     ('Le Figaro - Cybersécurité', 'https://www.lefigaro.fr/secteur/high-tech/cybersecurite', 'National', None),
+    ('Data Security Breach', 'https://www.datasecuritybreach.fr/', 'National', 'https://www.datasecuritybreach.fr/feed/'),
+    ('UnderNews', 'https://www.undernews.fr/', 'National', 'https://www.undernews.fr/feed'),
+    ('Global Security Mag', 'https://www.globalsecuritymag.fr/', 'National', 'https://www.globalsecuritymag.fr/spip.php?page=backend'),
+    ('Clubic - Cybersécurité', 'https://www.clubic.com/actualite-cybersecurite.html', 'National', None),
+    ('Usine Digitale - Cybersécurité', 'https://www.usine-digitale.fr/cybersecurite/', 'National', None),
 ]
 # alertes officielles: (nombre, url, departement, ctx, rss|None, filtre|None)
 #  ctx 'cyber' → CERT-FR/ANSSI/Cybermalveillance · ctx 'crime' → Intérieur/Police/Gendarmerie/Vigipirate
 _FUENTES_GOV_RAW = [
     ('CERT-FR (ANSSI)', 'https://www.cert.ssi.gouv.fr/', 'National', 'cyber', 'https://www.cert.ssi.gouv.fr/feed/', None),
+    ('CERT-FR - Alertes (temps réel)', 'https://www.cert.ssi.gouv.fr/alerte/', 'National', 'cyber', 'https://www.cert.ssi.gouv.fr/alerte/feed/', None),
+    ('CERT-FR - Avis de sécurité', 'https://www.cert.ssi.gouv.fr/avis/', 'National', 'cyber', 'https://www.cert.ssi.gouv.fr/avis/feed/', None),
+    ('CERT-FR - Menaces et incidents (CTI)', 'https://www.cert.ssi.gouv.fr/cti/', 'National', 'cyber', 'https://www.cert.ssi.gouv.fr/cti/feed/', None),
     ('ANSSI - Actualités', 'https://cyber.gouv.fr/actualites', 'National', 'cyber', None, None),
     ('Cybermalveillance.gouv.fr', 'https://www.cybermalveillance.gouv.fr/tous-nos-contenus/actualites', 'National', 'cyber', None, None),
     ('Intérieur - Communiqués', 'https://www.interieur.gouv.fr/Actualites/Communiques-de-presse', 'National', 'crime', None, None),
     ('Gendarmerie nationale - Actualités', 'https://www.gendarmerie.interieur.gouv.fr/actualites', 'National', 'crime', None, None),
     ('Police nationale - Actualités', 'https://www.police-nationale.interieur.gouv.fr/actualites', 'National', 'crime', None, None),
     ('Préfecture de police de Paris', 'https://www.prefecturedepolice.interieur.gouv.fr/actualites', 'Paris', 'crime', None, None),
+    ('SGDSN - Vigipirate / Sécurité nationale', 'https://www.sgdsn.gouv.fr/', 'National', 'crime',
+     None, r"vigipirate|attentat|terror|securite|menace|crise|alerte|cyber"),
+    ('Ministère de la Justice - Actualités', 'https://www.justice.gouv.fr/actualites', 'National', 'crime',
+     None, r"terror|criminal|crime|trafic|stupefiant|police|gendarm|securite|cyber|violence|mafia|banditisme"),
+    ('Gouvernement.fr - Actualités', 'https://www.gouvernement.fr/actualites', 'National', 'crime',
+     None, r"vigipirate|attentat|terror|securite|police|gendarm|alerte|crise|menace|cyber|delinquance|trafic"),
+    ('Service-Public - Actualités', 'https://www.service-public.fr/particuliers/actualites', 'National', 'crime',
+     None, r"vigipirate|attentat|alerte|cyber|arnaque|escroquerie|phishing|securite|delinquance"),
     ('Gouvernement - Sécurité (info.gouv.fr)', 'https://www.info.gouv.fr/actualite', 'National', 'crime',
      None, r"vigipirate|attentat|terror|securite|police|gendarm|alerte|crise|menace|cyber"),
 ]
+_FUENTES_EXTRA_RAW = [
+    ('BFM TV - Police & Justice', 'https://www.bfmtv.com/police-justice/', 'National'),
+    ('CNews - Faits divers', 'https://www.cnews.fr/faits-divers', 'National'),
+    ('TF1 Info - Faits divers', 'https://www.tf1info.fr/faits-divers/', 'National'),
+    ('Le Télégramme - Faits divers', 'https://www.letelegramme.fr/faits-divers/', 'Finistère'),
+    ('Le Dauphiné Libéré - Faits divers', 'https://www.ledauphine.com/faits-divers', 'Isère'),
+    ('La Nouvelle République - Faits divers', 'https://www.lanouvellerepublique.fr/faits-divers', 'Indre-et-Loire'),
+    ("L'Union - Faits divers", 'https://www.lunion.fr/faits-divers', 'Marne'),
+    ('Courrier Picard - Faits divers', 'https://www.courrier-picard.fr/faits-divers', 'Somme'),
+    ('DNA - Faits divers', 'https://www.dna.fr/faits-divers', 'Bas-Rhin'),
+    ("L'Indépendant - Faits divers", 'https://www.lindependant.fr/faits-divers/', 'Pyrénées-Orientales'),
+    ('Clicanoo - Faits divers', 'https://www.clicanoo.re/faits-divers', 'Réunion'),
+    ('Zinfos974', 'https://www.zinfos974.com/', 'Réunion'),
+]
+# RSS conocidos (se leen primero: suelen pasar aunque la web bloquee). Si alguno ya no existe, solo cuesta una petición.
+_RSS_CONOCIDOS = {
+    'Le Monde - Faits divers': 'https://www.lemonde.fr/faits-divers/rss_full.xml',
+    'Le Figaro - Faits divers': 'https://www.lefigaro.fr/rss/figaro_faits-divers.xml',
+    'France Info - Faits divers': 'https://www.francetvinfo.fr/faits-divers.rss',
+    'Le Parisien - Faits divers': 'https://www.leparisien.fr/faits-divers/rss.xml',
+    '20 Minutes - Faits divers': 'https://www.20minutes.fr/feeds/rss-faits-divers.xml',
+    'Actu17': 'https://actu17.fr/feed/',
+    'Marsactu': 'https://marsactu.fr/feed/',
+    'Made in Marseille': 'https://madeinmarseille.net/feed/',
+    'Sud Ouest - Faits divers': 'https://www.sudouest.fr/faits-divers/rss.xml',
+    'BFM TV - Police & Justice': 'https://www.bfmtv.com/rss/police-justice/',
+}
 _FUENTES_REGIONALES_PARIS = {'Le Parisien - Faits divers', 'Paris Normandie'}
 
 
@@ -1233,8 +1278,9 @@ def _mk_fuentes():
     def base(u):
         p = urlparse(u)
         return f'{p.scheme}://{p.netloc}'
-    for n, u, d in _FUENTES_RAW:
-        out.append({'nombre': n, 'url': u, 'base': base(u), 'departement': d, 'activo': True, 'tipo': 'faits_divers', 'ctx': 'crime'})
+    for n, u, d in list(_FUENTES_RAW) + _FUENTES_EXTRA_RAW:
+        out.append({'nombre': n, 'url': u, 'base': base(u), 'departement': d, 'activo': True, 'tipo': 'faits_divers', 'ctx': 'crime',
+                    'rss': _RSS_CONOCIDOS.get(n)})
     for n, u, d, rss in _FUENTES_CYBER_RAW:
         out.append({'nombre': n, 'url': u, 'base': base(u), 'departement': d, 'activo': True, 'tipo': 'cyber', 'ctx': 'cyber', 'rss': rss})
     for n, u, d, ctx, rss, flt in _FUENTES_GOV_RAW:
@@ -2413,7 +2459,22 @@ class ExtractorNoticias:
                         r, kind = None, 'gone'                       # nos mandó a la portada: la sección cambió
                     elif _reg(pf.netloc) == _reg(po.netloc):
                         adoptar(r.url, 'redirección')
-            if r is None and not (stop is not None and stop.is_set()):
+            if r is None and kind == 'blocked' and not (stop is not None and stop.is_set()):
+                info['kind'] = kind                                # bloqueo = problema del host, no de la URL: solo RSS, sin probar variantes
+                if not (eventos or alertas):
+                    pu = urlparse(fuente['url']); b0 = f'{pu.scheme}://{pu.netloc}'; u0 = fuente['url'].rstrip('/')
+                    probados = {fuente.get('rss'), fuente.get('rss_auto')}
+                    for fd in (fuente.get('rss_auto'), b0 + '/feed/', b0 + '/rss.xml', b0 + '/rss', u0 + '/rss', u0 + '/feed/', u0 + '.rss'):
+                        if not fd or (fd in probados and fd != fuente.get('rss_auto')) or time.time() > deadline or (stop is not None and stop.is_set()):
+                            continue
+                        probados.add(fd)
+                        n_ant = info['cand']
+                        rss(fd)
+                        if info['cand'] > n_ant:
+                            fuente['rss_auto'] = fd
+                            break
+                        time.sleep(get_random_delay())
+            elif r is None and not (stop is not None and stop.is_set()):
                 info['kind'] = kind
                 nueva, how = self.disc.discover_url(fuente, kind, deadline)
                 if nueva:
@@ -2457,6 +2518,8 @@ class ExtractorNoticias:
             info['kind'] = info['kind'] or 'error'
             info['note'] = str(e)[:60]
         info['n'] = len(eventos) + len(alertas)
+        if info['n'] > 0 and info['kind'] != 'ok':                   # la web falló pero el RSS entregó
+            info['kind'], info['note'] = 'ok', 'vía RSS (web bloqueada)'
         if info['n'] == 0 and info['kind'] == 'ok':
             info['note'] = info['note'] or ('sin contenido (JS/bloqueo)' if info['cand'] == 0 else 'filtrado: ' + ', '.join(f'{k} {v}' for k, v in info['rej'].most_common(3)))
         info['dur'] = round(time.time() - t0, 1)
@@ -3090,7 +3153,7 @@ select:focus,input:focus{outline:none;border-color:var(--cy);box-shadow:0 0 12px
 .maptools{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;align-items:center}.note{color:var(--mut);font-size:.78em;margin-left:auto}
 .leaflet-container{font-family:inherit}.leaflet-control-layers,.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:rgba(6,14,30,.94)!important;color:var(--tx)!important;border:1px solid var(--cy);box-shadow:0 0 18px rgba(0,229,255,.3)!important}
 .leaflet-popup-content{margin:10px 12px;font-size:.95em;line-height:1.35}.leaflet-popup-content a{color:var(--cy)}
-.pulse{position:relative}.pulse i{position:absolute;inset:0;border-radius:50%;background:var(--am);box-shadow:0 0 14px var(--am)}.pulse:before{content:'';position:absolute;inset:0;border-radius:50%;border:2px solid var(--am);animation:pulse 1.6s infinite}
+.leaflet-marker-icon.pulse{position:absolute}.pulse i{position:absolute;inset:0;border-radius:50%;background:var(--am);box-shadow:0 0 14px var(--am)}.pulse:before{content:'';position:absolute;inset:0;border-radius:50%;border:2px solid var(--am);animation:pulse 1.6s infinite}
 .pulse.hi i{background:var(--rd);box-shadow:0 0 16px var(--rd)}.pulse.hi:before{border-color:var(--rd)}
 .relbar{height:4px;background:#0b1a30;border-radius:4px;overflow:hidden;margin:5px 0}.relbar i{display:block;height:100%;background:linear-gradient(90deg,var(--cy),var(--mg))}
 #tlLbl{color:var(--cy);font-family:Orbitron,monospace;font-size:.85em}
@@ -3117,6 +3180,17 @@ select:focus,input:focus{outline:none;border-color:var(--cy);box-shadow:0 0 12px
 body.alarming .hud:before{animation-duration:1.2s}
 footer{text-align:center;color:#4d6285;font-size:.78em;padding:26px;letter-spacing:1px}
 @media(prefers-reduced-motion:reduce){*{animation:none!important}}
+
+/* ampliar gráficos */
+.card h3.zm{cursor:zoom-in}.card h3.zm:after{content:'⤢';float:right;font-size:1.5em;line-height:.8;opacity:.8;margin-left:8px}.card h3.zm:hover:after{color:var(--mg);opacity:1}
+.card .cv canvas,.card .statics img,.card img{cursor:zoom-in}
+.card .cv{min-height:250px}
+#zoomOv{position:fixed;inset:0;z-index:2000;background:rgba(2,6,14,.9);display:flex;padding:2.5vh 2.5vw}
+#zoomOv .zbox{flex:1;display:flex;flex-direction:column;padding:14px 18px;background:#070d1c;min-width:0;min-height:0}
+#zoomOv .zh{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-family:Orbitron,monospace;letter-spacing:2px;color:var(--cy)}
+#zoomOv .zb{flex:1;min-height:0;overflow:auto}#zoomOv .zb .cv{height:100%!important}#zoomOv .zb #net{height:100%!important}
+#zoomOv .zb img{display:block;width:auto;max-width:100%;max-height:100%;margin:0 auto;cursor:default}
+body.zooming{overflow:hidden}
 </style>
 </head>
 <body>
@@ -3268,7 +3342,7 @@ async function api(p,extra=''){const r=await fetch(p+'?'+qs()+extra);if(!r.ok)th
 async function post(p,body){const r=await fetch(p,{method:'POST',headers:{'Content-Type':'application/json','X-DF':'1'},body:JSON.stringify(body||{})});return r.json().catch(()=>({}));}
 const CH={};
 function mk(id,cfg){const el=document.getElementById(id);if(!el)return;if(CH[id])CH[id].destroy();CH[id]=new Chart(el,cfg);}
-Chart.defaults.color='#8aa0c4';Chart.defaults.borderColor='rgba(40,80,130,.35)';Chart.defaults.font.family="Rajdhani,'Segoe UI',sans-serif";Chart.defaults.maintainAspectRatio=false;
+Chart.defaults.color='#8aa0c4';Chart.defaults.borderColor='rgba(40,80,130,.35)';Chart.defaults.font.family="Rajdhani,'Segoe UI',sans-serif";Chart.defaults.maintainAspectRatio=false;Chart.defaults.font.size=13;
 const CY='#00e5ff',MG='#ff2bd6',RD='#ff2d55',AM='#ffb800',GN='#2bffb4';
 const arrow=d=>`<span class="arw ${d>1?'up':d<-1?'dn':'fl'}"></span>`, dcls=d=>d>1?'up':d<-1?'dn':'fl', sgn=d=>(d>0?'+':'')+d.toFixed(1)+'%';
 function spark(a,w=48,h=15,col='#00e5ff'){if(!a||a.length<2)return'';const mx=Math.max(...a,1),mn=Math.min(...a),r=(mx-mn)||1;
@@ -3524,6 +3598,27 @@ function connect(){let es;try{es=new EventSource('/stream');}catch(e){return;}
   es.onmessage=ev=>{const d=JSON.parse(ev.data);$('#ledLive').className='led on';jobUI(d.job);(d.log||[]).forEach(logLine);
     if(d.alarm&&AL.seq!==null&&d.alarm.seq!==AL.seq)trigger(d.alarm);if(d.alarm)AL.seq=d.alarm.seq;
     if(lastV!==null&&d.version!==lastV)invalidate();lastV=d.version;};}
+
+/* ── ampliar gráficos: botón ⤢ en el título, doble clic en el gráfico, Esc para cerrar ── */
+let ZM=null;
+function zoomClose(){if(!ZM)return;const{ov,body,ph}=ZM;ph.parentNode.insertBefore(body,ph);ph.remove();ov.remove();document.body.classList.remove('zooming');ZM=null;zoomResize();}
+function zoomResize(){setTimeout(()=>{try{window.dispatchEvent(new Event('resize'));if(window.Chart)document.querySelectorAll('canvas').forEach(c=>{const ch=Chart.getChart(c);if(ch)ch.resize();});if(typeof NET!=='undefined'&&NET&&NET.fit)NET.fit();}catch(e){}},80);}
+function zoomOpen(card){
+  if(ZM)return;const body=card.querySelector('.cv,#net,img');if(!body)return;
+  const ph=document.createComment('zm');body.parentNode.insertBefore(ph,body);
+  const ov=document.createElement('div');ov.id='zoomOv';
+  ov.innerHTML='<div class="holo zbox"><div class="zh"><span></span><button class="btn sm mg">✕</button></div><div class="zb"></div></div>';
+  const h=card.querySelector('h3');ov.querySelector('.zh span').textContent=h?h.textContent:'';
+  ov.querySelector('.zb').appendChild(body);document.body.appendChild(ov);document.body.classList.add('zooming');
+  ov.querySelector('button').onclick=zoomClose;ov.addEventListener('mousedown',e=>{if(e.target===ov)zoomClose();});
+  ZM={ov,body,ph};zoomResize();
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')zoomClose();});
+const zoomable=c=>c&&c.querySelector&&c.querySelector('.cv,#net,img');
+document.addEventListener('click',e=>{if(ZM)return;const h=e.target.closest('.card > h3');if(h&&zoomable(h.parentElement))zoomOpen(h.parentElement);});
+document.addEventListener('dblclick',e=>{if(ZM)return;const c=e.target.closest('.card');if(c&&zoomable(c)&&!e.target.closest('input,select,button,textarea'))zoomOpen(c);});
+new MutationObserver(()=>document.querySelectorAll('.card > h3:not(.zm)').forEach(h=>{if(zoomable(h.parentElement))h.classList.add('zm');})).observe(document.body,{childList:true,subtree:true});
+document.querySelectorAll('.card > h3').forEach(h=>{if(zoomable(h.parentElement))h.classList.add('zm');});
 applyI18n();show('dash');renderTicker().catch(console.error);renderGov().catch(console.error);connect();
 fetch('/api/alarm/history').then(r=>r.json()).then(h=>{const ah=$('#aHist');(h.items||[]).slice(0,12).forEach(x=>{const d=document.createElement('div');d.textContent=x.ts+' · '+x.titulo;ah.appendChild(d);});}).catch(()=>{});
 </script></body></html>
