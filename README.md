@@ -1,6 +1,96 @@
-
 # 🔪 DIABOLIC FRANCE v3.0
+<p align="center">
+  <!-- Version Badges -->
+  <img src="https://img.shields.io/badge/version-3.0-red?style=for-the-badge&logo=github">
+  <img src="https://img.shields.io/badge/release-stable-brightgreen?style=for-the-badge&logo=github">
+  <img src="https://img.shields.io/badge/build-passing-success?style=for-the-badge&logo=githubactions">
+  <img src="https://img.shields.io/badge/code%20quality-A%2B-brightgreen?style=for-the-badge&logo=codefactor">
+</p>
 
+<p align="center">
+  <!-- License Badges -->
+  <img src="https://img.shields.io/badge/license-GPLv3-blue?style=for-the-badge&logo=gnu">
+  <img src="https://img.shields.io/badge/open%20source-yes-brightgreen?style=for-the-badge&logo=opensourceinitiative">
+  <img src="https://img.shields.io/badge/ethical%20use-required-red?style=for-the-badge&logo=spider">
+</p>
+
+<p align="center">
+  <!-- Language Badges -->
+  <img src="https://img.shields.io/badge/python-3.8%20%7C%203.9%20%7C%203.10%20%7C%203.11-blue?style=for-the-badge&logo=python">
+  <img src="https://img.shields.io/badge/flask-3.0+-lightblue?style=for-the-badge&logo=flask">
+  <img src="https://img.shields.io/badge/beautifulsoup-4.12+-green?style=for-the-badge&logo=python">
+  <img src="https://img.shields.io/badge/chart.js-4.4+-pink?style=for-the-badge&logo=chartdotjs">
+</p>
+
+<p align="center">
+  <!-- Multilanguage Badges -->
+  <img src="https://img.shields.io/badge/Español-🇪🇸-red?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Français-🇫🇷-blue?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Italiano-🇮🇹-green?style=for-the-badge">
+  <img src="https://img.shields.io/badge/3%20Langues-Complet-brightgreen?style=for-the-badge">
+</p>
+
+<p align="center">
+  <!-- Platform Badges -->
+  <img src="https://img.shields.io/badge/platform-windows%20%7C%20macos%20%7C%20linux-lightgrey?style=for-the-badge&logo=windows">
+  <img src="https://img.shields.io/badge/docker-ready-blue?style=for-the-badge&logo=docker">
+  <img src="https://img.shields.io/badge/kubernetes-ready-lightblue?style=for-the-badge&logo=kubernetes">
+</p>
+
+<p align="center">
+  <!-- Features Badges -->
+  <img src="https://img.shields.io/badge/pagination-✅-brightgreen?style=for-the-badge&logo=page">
+  <img src="https://img.shields.io/badge/auto--discovery-✅-blue?style=for-the-badge&logo=automatic">
+  <img src="https://img.shields.io/badge/anti--blocking-🛡️-red?style=for-the-badge&logo=shield">
+</p>
+
+<p align="center">
+  <!-- Stats Badges -->
+  <img src="https://img.shields.io/badge/lines%20of%20code-2%2C500%2B-brightgreen?style=for-the-badge&logo=counter-strike">
+  <img src="https://img.shields.io/badge/user--agents-150%2B-orange?style=for-the-badge&logo=user-secret">
+  <img src="https://img.shields.io/badge/sources-55%2B-blue?style=for-the-badge&logo=newspaper">
+  <img src="https://img.shields.io/badge/départements-101-success?style=for-the-badge&logo=map">
+</p>
+
+<p align="center">
+  <!-- Maintenance Badges -->
+  <img src="https://img.shields.io/badge/maintained-yes-brightgreen?style=for-the-badge&logo=github">
+  <img src="https://img.shields.io/badge/security-B%2B-green?style=for-the-badge&logo=security">
+  <img src="https://img.shields.io/badge/coverage-85%25-yellowgreen?style=for-the-badge&logo=codecov">
+  <img src="https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen?style=for-the-badge&logo=dependabot">
+</p>
+
+<p align="center">
+  <!-- Social Badges -->
+  <img src="https://img.shields.io/badge/PRs-welcome-brightgreen?style=for-the-badge&logo=github">
+  <img src="https://img.shields.io/badge/contributors-1-orange?style=for-the-badge&logo=github">
+  <img src="https://img.shields.io/badge/stars-⭐-yellow?style=for-the-badge&logo=github">
+  <img src="https://img.shields.io/badge/forks-🍴-lightgrey?style=for-the-badge&logo=github">
+</p>
+
+<p align="center">
+  <!-- Fun Badges -->
+  <img src="https://img.shields.io/badge/baguette-approved-brown?style=for-the-badge&logo=github">
+  <img src="https://img.shields.io/badge/cafeiné-powered-brown?style=for-the-badge&logo=buymeacoffee">
+  <img src="https://img.shields.io/badge/solidarité-100%25-blue?style=for-the-badge&logo=heart">
+  <img src="https://img.shields.io/badge/bonjour-bienvenue-gold?style=for-the-badge&logo=github">
+</p>
+
+<p align="center">
+  <img src="https://komarev.com/ghpvc/?username=AideFranceCrime&label=FRENCH+EYES+WATCHING&color=blue&style=for-the-badge">
+  <img src="https://img.shields.io/badge/status-crime_intelligence_active-success?style=for-the-badge">
+</p>
+
+<h1 align="center">🔪🇫🇷🗼 DIABOLIC FRANCE v3.0</h1>
+<h3 align="center">🇫🇷 PLATEFORME DE RENSEIGNEMENT CRIMINEL FRANÇAISE 🇫🇷</h3>
+<h3 align="center">🇪🇸 PLATAFORMA DE INTELIGENCIA CRIMINAL FRANCESA 🇪🇸</h3>
+<h3 align="center">🇮🇹 PIATTAFORMA DI INTELIGENZA CRIMINALE FRANCESE 🇮🇹</h3>
+
+<p align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=24&duration=3000&pause=500&color=FF0000&center=true&vCenter=true&lines=Surveiller+pour+protéger;Drogue+%7C+Gangs+%7C+Criminalité+organisée;101+départements+%7C+55%2B+sources">
+</p>
+
+![Logo](Diabolic_France_Logo.png)
 **Plateforme de renseignement criminel française — Surveillance · Rue · Cybercriminalité · Alertes officielles**
 
 > By Condor2026 · •SpectrumSecurity• · "L'union fait la force"
