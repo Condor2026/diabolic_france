@@ -8,13 +8,13 @@
 ╔═══════════════════════════════════════════════════════════════════════════════╗
 ║  🔪 DIABOLIC FRANCE v3.0 - SURVEILLANCE CRIMINELLE · RUE · CYBERCRIMINALITÉ   ║
 ║  ═══════════════════════════════════════════════════════════════════════════  ║
-║  🕷️  Scraping v1 conservé (séquentiel, 150+ UA, 2 essais puis source suivante) ║
+║  🕷️  Scraping v1 conservé (séquentiel, 150+ UA, 2 essais puis source suivante)║
 ║  🔁 Auto-discovery: sous-domaine/www/section changés → URL retrouvée seule    ║
 ║  🎯 Classifieur anti-faux-positifs + score de confiance + pertinence          ║
 ║  🔗 Fusion multi-sources (une info = plusieurs sources confirmées)            ║
 ║  🚨 Conflits de rue + alarme sonore (armer/couper/test) + alertes officielles ║
 ║  📈 Indicateurs façon crypto (RSI, SMA, Bollinger, indice de menace)          ║
-║  🗺️  Carte 2D: Carto sombre · plan réel OSM · satellite · chaleur · clusters   ║
+║  🗺️  Carte 2D: Carto sombre · plan réel OSM · satellite · chaleur · clusters  ║
 ║  🌍 5 langues: FR · ES · EN · IT · DE        🖥️  Panneau holographique        ║
 ║                                                                               ║
 ║  🛡️ "L'union fait la force" - Devise française                                ║
