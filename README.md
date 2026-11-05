@@ -90,7 +90,7 @@
   <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=24&duration=3000&pause=500&color=FF0000&center=true&vCenter=true&lines=Surveiller+pour+protéger;Drogue+%7C+Gangs+%7C+Criminalité+organisée;101+départements+%7C+55%2B+sources">
 </p>
 
-![Logo](Diabolic_France_Logo.png)
+![Logo](Diabolikosint.jpg)
 **Plateforme de renseignement criminel française — Surveillance · Rue · Cybercriminalité · Alertes officielles**
 
 > By Condor2026 · •SpectrumSecurity• · "L'union fait la force"
